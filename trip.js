@@ -46,7 +46,7 @@ function Trip(scene, data) {
 			if (self.visibleMoments[momentIndex]) {
 				var isDone = self.visibleMoments[momentIndex].tick(dt);
 				if (isDone && momentIndex == self.currentMomentIndex) {
-					self.showMomentAtIndex(self.currentMomentIndex < self.momentsData.length ? self.currentMomentIndex+1 : 0);
+					self.showMomentAtIndex(self.currentMomentIndex+1 < self.momentsData.length ? self.currentMomentIndex+1 : 0);
 				}
 			}
 		}
