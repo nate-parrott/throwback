@@ -46,6 +46,7 @@ function Moment(data) {
 		self.globe = globe;
 	}
 	
+	self.contents = [];
 	if (data.contents) {
 		var angleDelta = 45;
 		var totalAngleDelta = angleDelta * data.contents.length;
@@ -53,6 +54,7 @@ function Moment(data) {
 		data.contents.forEach(function(item, i) {
 			var angle = (data.contents.length - i) * angleDelta + offset;
 			var c = new Contents(item, angle, self.group);
+			self.contents.push(c);
 		})
 	}
 	
@@ -83,6 +85,9 @@ function Moment(data) {
 	self.tick = function(dt) {
 		// return true if we're done here
 		self.elapsed += dt;
+		self.contents.forEach(function(item) {
+			item.tick(dt);
+		})
 		if (data.duration && self.elapsed >= data.duration && !self.done) {
 			self.done = true;
 		}

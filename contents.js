@@ -4,7 +4,13 @@ var Contents = function(data, angle, node) {
 		addImageContents(self, node, data.url, angle, 0);
 	} else if (data.type === 'text') {
 		addTextContents(self, node, data.textLines, angle, 0);
+	} else if (data.type === 'video') {
+		addVideoContents(self, node, data.url, data.count, data.framerate, angle, 0);
 	}
+	self.tick = function(dt) {
+		if (self.animator) self.animator.update(1000 * dt);
+	}
+	return self;
 }
 
 function positionContentObject(obj, angle, vertAngle, random) {
@@ -12,6 +18,36 @@ function positionContentObject(obj, angle, vertAngle, random) {
 	obj.rotateX(vertAngle * Math.PI / 180);
 	if (random) obj.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.03)
  	obj.translateZ(-70);
+}
+
+function addVideoContents(self, node, url, count, framerate, angle, vertAngle) {
+	var loader = new THREE.TextureLoader();
+
+	// load a resource
+	loader.load(url, function(texture) {
+		
+		var geoWidth = 1;
+		var geoHeight = 1;
+		var aspect = (texture.image.width / count) / texture.image.height;
+		if (aspect > 1) {
+			geoHeight /= aspect;
+		} else {
+			geoWidth *= aspect;
+		}
+		// do something with the texture
+		var material = new THREE.MeshBasicMaterial( {
+			map: texture,
+			side: THREE.DoubleSide
+		 } );
+		var size = 40;
+		
+		self.animator = new TextureAnimator( texture, count, 1, count, 1000/framerate ); // texture, #horiz, #vert, #total, duration.
+		var runnerMaterial = new THREE.MeshBasicMaterial( { map: texture, side:THREE.DoubleSide } );
+		var runnerGeometry = new THREE.PlaneGeometry(size * geoWidth, size * geoHeight, 1, 1);
+		var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+		node.add(runner);
+		positionContentObject(runner, angle, vertAngle, true);
+	});
 }
 
 function addImageContents(self, node, url, angle, vertAngle) {
