@@ -5,15 +5,16 @@ function Trip(scene, data) {
 	self.currentMomentIndex = null;
 	self.visibleMoments = {};
 	self.showMomentAtIndex = function(i) {
-		console.log("SHowing at index", i)
 		if (self.visibleMoments[self.currentMomentIndex]) {
 			var oldIndex = self.currentMomentIndex;
-			self.visibleMoments[oldIndex].hide(null, function() { delete self.visibleMoments[oldIndex] });
+			var transition = new Transition();
+			self.visibleMoments[oldIndex].hide(transition, function() { delete self.visibleMoments[oldIndex] });
 		}
 		self.currentMomentIndex = i;
 		var moment = new Moment(self.momentsData[i]);
 		self.visibleMoments[i] = moment;
-		moment.show(self.scene, null);
+		var transition = new Transition();
+		moment.show(self.scene, transition);
 	}
 	self.start = function() {
 		self.showMomentAtIndex(0);

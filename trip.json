@@ -2,9 +2,10 @@
 	"moments": [
 		{
 			"contents": [
+				{"type": "image", "url": "photos/test.png"},
 				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
 			],
-			"duration": 3
+			"duration": 1.5
 		},
 		{
 			"sky": "sky/france.png",

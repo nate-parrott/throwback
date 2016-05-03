@@ -60,10 +60,11 @@ function addImageContents(self, node, url, angle, vertAngle) {
 function addTextContents(self, node, textLines, angle, vertAngle) {
 	var loader = new THREE.FontLoader();
 	getFont(function ( font ) {
-		var material = new THREE.MultiMaterial( [
+		/*var material = new THREE.MultiMaterial( [
 							new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ), // front
 							new THREE.MeshPhongMaterial( { color: 0xcccccc, shading: THREE.SmoothShading } ) // side
-						] );
+						] );*/
+		var material = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ); // front
 		var size = 3;
 		var totalHeight = size * 1.5 * textLines.length;
 		textLines.forEach(function(text, i) {
