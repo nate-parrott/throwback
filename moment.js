@@ -40,6 +40,7 @@ function Moment(data) {
 					// specular:    new THREE.Color('grey')								
 				})
 		);
+		globe.renderOrder = 2;
 		self.group.add(globe);
 		self.globe = globe;
 	}
@@ -101,7 +102,9 @@ function Moment(data) {
 		if (data.flight) {
 			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
 			var toQ = quaternionFromLatLng(data.flight.to[0], data.flight.to[1]);
-			var progress = easeInOut(Math.min(1, self.elapsed / data.duration));
+			var duration = data.duration;
+			if (data.endMidFlight) duration *= 1.1;
+			var progress = easeInOut(Math.min(1, self.elapsed / duration));
 			fromQ.slerp(toQ, progress);
 			self.globe.quaternion.copy(fromQ);
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;

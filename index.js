@@ -12,6 +12,7 @@ animate();
 
 function init() {
 	renderer = new THREE.WebGLRenderer();
+	renderer.setClearColor(0x000000);
 	element = renderer.domElement;
 	container = document.getElementById('example');
 	container.appendChild(element);

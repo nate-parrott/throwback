@@ -2,14 +2,8 @@
 	"moments": [
 		{
 			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
-			"duration": 7
-		},
-		{
-			"contents": [
-				{"type": "image", "url": "photos/test.png"},
-				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
-			],
-			"duration": 1.5
+			"duration": 8,
+			"endMidFlight": true
 		},
 		{
 			"sky": "sky/france.png",
@@ -19,6 +13,13 @@
 				{"type": "image", "url": "photos/test.png"},
 				{"type": "image", "url": "photos/test2.png"}
 			]
+		},
+		{
+			"contents": [
+				{"type": "image", "url": "photos/test.png"},
+				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
+			],
+			"duration": 1.5
 		}
 	]
 }
