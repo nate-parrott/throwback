@@ -1,6 +1,12 @@
 {
 	"moments": [
 		{
+			"contents": [
+				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
+			],
+			"duration": 3
+		},
+		{
 			"sky": "sky/france.png",
 			"caption": "Day 1: San Juan, Puerto Rico",
 			"contents": [

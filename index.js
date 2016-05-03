@@ -1,7 +1,7 @@
 var camera, scene, renderer, model;
 var effect, controls;
 var element, container;
-
+var trip;
 var clock = new THREE.Clock();
 
 
@@ -59,12 +59,16 @@ function init() {
 	var directionalLight = new THREE.DirectionalLight(0xffeedd);
 	directionalLight.position.set(0, 0, 1).normalize();
 	scene.add(directionalLight);
-
+	
+	scene.name = 'Root scene';
 
 	window.addEventListener('resize', resize, false);
 	setTimeout(resize, 1);
 	
-	startTrip(scene);
+	$.get('trip.json', function(data) {
+		trip = new Trip(scene, data);
+		trip.start();
+	})
 }
 
 
@@ -84,7 +88,9 @@ function update(dt) {
 	resize();
 
 	camera.updateProjectionMatrix();
-
+	
+	if (trip) trip.tick(dt);
+	
 	controls.update(dt);
 }
 

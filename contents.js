@@ -42,6 +42,7 @@ function addImageContents(self, node, url, angle, vertAngle) {
 		 	var plane = new THREE.Mesh( geometry, material );
 			positionContentObject(plane, angle, vertAngle, true);
 		 	node.add( plane );
+			// console.log("adding image ", url, " to ", node);
 			self.plane = plane;
 		},
 		// Function called when download progresses
@@ -79,9 +80,9 @@ function addTextContents(self, node, textLines, angle, vertAngle) {
 			var mesh = new THREE.Mesh(textGeo, material);
 			positionContentObject(mesh, angle, vertAngle, false);
 			mesh.translateY(-(size * 1.5 * i - totalHeight/2));
-			scene.add(mesh);
+			node.add(mesh);
 		});
-	} );		
+	} );
 }
 
 var _font;
