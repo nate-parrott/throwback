@@ -1,7 +1,8 @@
 {
 	"moments": [
 		{
-			"flight": {"from": [41, -73.7]}
+			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
+			"duration": 7
 		},
 		{
 			"contents": [

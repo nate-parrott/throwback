@@ -40,40 +40,8 @@ function Moment(data) {
 					// specular:    new THREE.Color('grey')								
 				})
 		);
-		// globe.rotation.set(-data.flight.from[0] * Math.PI / 180, -data.flight.from[1] * Math.PI / 180, 0, 'YZX');
-		// globe.translateY(-radius * 1.5);
-		// data.flight.from[1] = 0;
-		// lat, lon
-		var lat = data.flight.from[0];
-		var lng = data.flight.from[1];
-		var y = (90 - lat) * Math.PI / 180;
-		var x = (-lng + 90) * Math.PI / 180;
-		// lat = -90 * Math.PI / 180;
-		// lng = 0; //-90 * Math.PI / 180;
-		// var n = new THREE.Vector3(Math.cos(lat) * Math.cos(lng), Math.cos(lat) * Math.sin(lng), Math.sin(lat));
-		// var n = new THREE.Vector3(Math.cos(lat) * Math.sin(lng), Math.cos(lat) * Math.cos(lng), Math.sin(lat));
-		// globe.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -data.flight.from[1] * Math.PI / 180);
-		// var n = new THREE.Vector3(0,0,0);
-		// globe.lookAt(n.multiplyScalar(radius * 2));
-		// globe.rotateY(x);
-		// globe.rotateX(lat);
-		/*var r = function() {
-			globe.rotateY(Math.PI / 180 * 0.1);
-			setTimeout(r, 1/60)
-		}
-		r()*/
-		globe.rotateX(y);
-		globe.rotateY(x);
-		globe.position.add(new THREE.Vector3(0, -radius * 1.02, 0));
-		// var yAxis = new THREE.Vector3(0,1,0);
-		// yAxis.applyAxisAngle(new THREE.Vector3(1,0,0), lat);
-		// console.log(yAxis);
-		// globe.rotateOnAxis(yAxis, lng);
-		// var yAxis = new THREE.Vector3(0, Math.cos(lat) + Math.sin(lng), Math.cos(lng) + Math.sin(lat));
-		// globe.quaternion.setFromAxisAngle(yAxis, -lng);
 		self.group.add(globe);
 		self.globe = globe;
-		console.log('globe')
 	}
 	
 	if (data.contents) {
@@ -117,18 +85,27 @@ function Moment(data) {
 			self.done = true;
 		}
 		if (self.inTransition) {
-			var progress = Math.min(1, self.elapsed / self.inTransition.duration);
+			var progress = easeOut(Math.min(1, self.elapsed / self.inTransition.duration));
 			self.inTransition.tick(self, progress);
 			if (progress == 1) {
 				delete self.inTransition;
 			}
 		}
 		if (self.outTransition) {
-			var transitionProgress = Math.min(1, (self.elapsed - self.hiddenAtTime) / self.outTransition.duration);
+			var transitionProgress = easeIn(Math.min(1, (self.elapsed - self.hiddenAtTime) / self.outTransition.duration));
 			self.outTransition.tick(self, 1-transitionProgress);
 			if (transitionProgress == 1) {
 				self.onOutTransitionDone();
 			}
+		}
+		if (data.flight) {
+			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
+			var toQ = quaternionFromLatLng(data.flight.to[0], data.flight.to[1]);
+			var progress = easeInOut(Math.min(1, self.elapsed / data.duration));
+			fromQ.slerp(toQ, progress);
+			self.globe.quaternion.copy(fromQ);
+			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;
+			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
 		}
 		return self.done;
 	}
