@@ -1,7 +1,6 @@
 function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration) 
 {	
 	// note: texture passed by reference, will be updated by the update function.
-		
 	this.tilesHorizontal = tilesHoriz;
 	this.tilesVertical = tilesVert;
 	// how many images does this spritesheet contain?
@@ -32,7 +31,8 @@ function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDurat
 			var currentColumn = this.currentTile % this.tilesHorizontal;
 			texture.offset.x = currentColumn / this.tilesHorizontal;
 			var currentRow = Math.floor( this.currentTile / this.tilesHorizontal );
-			texture.offset.y = currentRow / this.tilesVertical;
+			texture.offset.y = 1 - currentRow / this.tilesVertical;
+			console.log(texture.offset)
 		}
 	};
 }		

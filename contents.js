@@ -5,7 +5,7 @@ var Contents = function(data, angle, node) {
 	} else if (data.type === 'text') {
 		addTextContents(self, node, data.textLines, angle, 0);
 	} else if (data.type === 'video') {
-		addVideoContents(self, node, data.url, data.count, data.framerate, angle, 0);
+		addVideoContents(self, node, data.url, data.columns, data.rows, data.count, data.framerate, angle, 0);
 	}
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
@@ -20,7 +20,7 @@ function positionContentObject(obj, angle, vertAngle, random) {
  	obj.translateZ(-70);
 }
 
-function addVideoContents(self, node, url, count, framerate, angle, vertAngle) {
+function addVideoContents(self, node, url, columns, rows, count, framerate, angle, vertAngle) {
 	var loader = new THREE.TextureLoader();
 
 	// load a resource
@@ -28,7 +28,7 @@ function addVideoContents(self, node, url, count, framerate, angle, vertAngle) {
 		
 		var geoWidth = 1;
 		var geoHeight = 1;
-		var aspect = (texture.image.width / count) / texture.image.height;
+		var aspect = (texture.image.width / columns) / (texture.image.height / rows);
 		if (aspect > 1) {
 			geoHeight /= aspect;
 		} else {
@@ -40,9 +40,8 @@ function addVideoContents(self, node, url, count, framerate, angle, vertAngle) {
 			side: THREE.DoubleSide
 		 } );
 		var size = 40;
-		
-		self.animator = new TextureAnimator( texture, count, 1, count, 1000/framerate ); // texture, #horiz, #vert, #total, duration.
-		var runnerMaterial = new THREE.MeshBasicMaterial( { map: texture, side:THREE.DoubleSide } );
+		self.animator = new TextureAnimator( texture, columns, rows, count, 1000/framerate ); // texture, #horiz, #vert, #total, duration.
+		var runnerMaterial = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
 		var runnerGeometry = new THREE.PlaneGeometry(size * geoWidth, size * geoHeight, 1, 1);
 		var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
 		node.add(runner);
