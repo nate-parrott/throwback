@@ -2,7 +2,16 @@ var Contents = function(data, angle, node) {
 	var self = this;
 	if (data.type === 'image') {
 		addImageContents(self, node, data.url, angle, 0);
+	} else if (data.type === 'text') {
+		addTextContents(self, node, data.textLines, angle, 0);
 	}
+}
+
+function positionContentObject(obj, angle, vertAngle, random) {
+ 	obj.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
+	obj.rotateX(vertAngle * Math.PI / 180);
+	if (random) obj.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.03)
+ 	obj.translateZ(-70);
 }
 
 function addImageContents(self, node, url, angle, vertAngle) {
@@ -27,13 +36,11 @@ function addImageContents(self, node, url, angle, vertAngle) {
 				map: texture,
 				side: THREE.DoubleSide
 			 } );
-		 	var geometry = new THREE.PlaneGeometry( 20 * geoWidth, 20 * geoHeight);
+			var size = 40;
+		 	var geometry = new THREE.PlaneGeometry( size * geoWidth, size * geoHeight);
 		 	// var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
 		 	var plane = new THREE.Mesh( geometry, material );
-		 	plane.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
-			plane.rotateX(vertAngle * Math.PI / 180);
-			// plane.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.1)
-		 	plane.translateZ(-70);
+			positionContentObject(plane, angle, vertAngle, true);
 		 	node.add( plane );
 			self.plane = plane;
 		},
@@ -46,4 +53,46 @@ function addImageContents(self, node, url, angle, vertAngle) {
 			console.log('error loading ', url);
 		}
 	);
+}
+
+
+function addTextContents(self, node, textLines, angle, vertAngle) {
+	var loader = new THREE.FontLoader();
+	getFont(function ( font ) {
+		var material = new THREE.MultiMaterial( [
+							new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ), // front
+							new THREE.MeshPhongMaterial( { color: 0xcccccc, shading: THREE.SmoothShading } ) // side
+						] );
+		var size = 3;
+		var totalHeight = size * 1.5 * textLines.length;
+		textLines.forEach(function(text, i) {
+			var textGeo = new THREE.TextGeometry(text, {
+								font: font,
+								size: 3,
+								height: 0.2,
+								material: 0
+							});
+			textGeo.computeBoundingBox();
+			var width = textGeo.boundingBox.max.x - textGeo.boundingBox.min.x;
+			var height = textGeo.boundingBox.max.y - textGeo.boundingBox.min.y;
+			// var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
+			var mesh = new THREE.Mesh(textGeo, material);
+			positionContentObject(mesh, angle, vertAngle, false);
+			mesh.translateY(-(size * 1.5 * i - totalHeight/2));
+			scene.add(mesh);
+		});
+	} );		
+}
+
+var _font;
+function getFont(callback) {
+	if (_font) {
+		callback(_font);
+	} else {
+		var loader = new THREE.FontLoader();
+		loader.load('fonts/helvetiker_regular.typeface.js', function ( font ) {
+			_font = font;
+			callback(font);
+		})
+	}
 }

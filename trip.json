@@ -4,6 +4,7 @@
 			"sky": "sky/france.png",
 			"caption": "Day 1: San Juan, Puerto Rico",
 			"contents": [
+				{"type": "text", "textLines": ["Day 1:", "San Juan,", "Puerto Rico"]},
 				{"type": "image", "url": "photos/test.png"},
 				{"type": "image", "url": "photos/test2.png"}
 			]

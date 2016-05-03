@@ -23,7 +23,7 @@ function Moment(data) {
 		self.sky = sky;
 	}
 	if (data.contents) {
-		var angleDelta = 25;
+		var angleDelta = 45;
 		var totalAngleDelta = angleDelta * data.contents.length;
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
