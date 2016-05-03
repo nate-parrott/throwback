@@ -1,6 +1,9 @@
 {
 	"moments": [
 		{
+			"flight": {"from": [41, -73.7]}
+		},
+		{
 			"contents": [
 				{"type": "image", "url": "photos/test.png"},
 				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}

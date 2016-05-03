@@ -21,11 +21,61 @@ function Moment(data) {
             map: THREE.ImageUtils.loadTexture(data.sky),
             side: THREE.DoubleSide
         });
-        var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 60, 40 ), material);
+        var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 30, 30 ), material);
 		sky.renderOrder = -1;
         self.group.add(sky);
 		self.sky = sky;
 	}
+	
+	if (data.flight) {
+		var radius = 200;
+		var segments = 50;
+		var globe = new THREE.Mesh(
+				new THREE.SphereGeometry(radius, segments, segments),
+				new THREE.MeshPhongMaterial({
+					map:         THREE.ImageUtils.loadTexture('assets/2_no_clouds_4k.jpg')
+					// bumpMap:     THREE.ImageUtils.loadTexture('assets/elev_bump_4k.jpg'),
+					// bumpScale:   0.005,
+					// specularMap: THREE.ImageUtils.loadTexture('assets/water_4k.png'),
+					// specular:    new THREE.Color('grey')								
+				})
+		);
+		// globe.rotation.set(-data.flight.from[0] * Math.PI / 180, -data.flight.from[1] * Math.PI / 180, 0, 'YZX');
+		// globe.translateY(-radius * 1.5);
+		// data.flight.from[1] = 0;
+		// lat, lon
+		var lat = data.flight.from[0];
+		var lng = data.flight.from[1];
+		var y = (90 - lat) * Math.PI / 180;
+		var x = (-lng + 90) * Math.PI / 180;
+		// lat = -90 * Math.PI / 180;
+		// lng = 0; //-90 * Math.PI / 180;
+		// var n = new THREE.Vector3(Math.cos(lat) * Math.cos(lng), Math.cos(lat) * Math.sin(lng), Math.sin(lat));
+		// var n = new THREE.Vector3(Math.cos(lat) * Math.sin(lng), Math.cos(lat) * Math.cos(lng), Math.sin(lat));
+		// globe.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -data.flight.from[1] * Math.PI / 180);
+		// var n = new THREE.Vector3(0,0,0);
+		// globe.lookAt(n.multiplyScalar(radius * 2));
+		// globe.rotateY(x);
+		// globe.rotateX(lat);
+		/*var r = function() {
+			globe.rotateY(Math.PI / 180 * 0.1);
+			setTimeout(r, 1/60)
+		}
+		r()*/
+		globe.rotateX(y);
+		globe.rotateY(x);
+		globe.position.add(new THREE.Vector3(0, -radius * 1.02, 0));
+		// var yAxis = new THREE.Vector3(0,1,0);
+		// yAxis.applyAxisAngle(new THREE.Vector3(1,0,0), lat);
+		// console.log(yAxis);
+		// globe.rotateOnAxis(yAxis, lng);
+		// var yAxis = new THREE.Vector3(0, Math.cos(lat) + Math.sin(lng), Math.cos(lng) + Math.sin(lat));
+		// globe.quaternion.setFromAxisAngle(yAxis, -lng);
+		self.group.add(globe);
+		self.globe = globe;
+		console.log('globe')
+	}
+	
 	if (data.contents) {
 		var angleDelta = 45;
 		var totalAngleDelta = angleDelta * data.contents.length;
