@@ -2,6 +2,12 @@
 	"moments": [
 		{
 			"contents": [
+				{"type": "text", "textLines": ["HEY"]}
+			],
+			"duration": 6
+		},
+		{
+			"contents": [
 				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]},
 				{"count": 88, "rows": 10, "url": "videos/testvid.jpg", "framerate": 13, "type": "video", "columns": 9}
 			],
@@ -31,12 +37,6 @@
 			],
 			"transitionInForward": true,
 			"duration": 50
-		},
-		{
-			"contents": [
-				{"type": "text", "textLines": ["HEY"]}
-			],
-			"duration": 6
 		}
 	]
 }
