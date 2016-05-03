@@ -2,6 +2,12 @@
 	"moments": [
 		{
 			"contents": [
+				{"type": "text", "textLines": ["HEY"]}
+			],
+			"duration": 6
+		},
+		{
+			"contents": [
 				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]},
 				{"count": 102, "framerate": 13, "type": "video", "url": "videos/testvid.jpg"}
 			],
