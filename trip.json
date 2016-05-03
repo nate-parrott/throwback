@@ -3,7 +3,10 @@
 		{
 			"sky": "sky/france.png",
 			"caption": "Day 1: San Juan, Puerto Rico",
-			"photos": ["photo/test.png", "photo/test2.png"]
+			"contents": [
+				{"type": "image", "url": "photos/test.png"},
+				{"type": "image", "url": "photos/test2.png"}
+			]
 		}
 	]
 }
