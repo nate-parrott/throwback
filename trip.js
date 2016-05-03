@@ -7,21 +7,33 @@ function Trip(scene, data) {
 	self.showMomentAtIndex = function(i) {
 		if (self.visibleMoments[self.currentMomentIndex]) {
 			var oldIndex = self.currentMomentIndex;
+			
+			// create transition:
 			var transition = new Transition();
 			if (self.momentsData[i].flight) {
 				// we're going into a flight:
 				transition.upwardMotion = 1;
 			}
+			if (self.momentsData[oldIndex].transitionOutForward) {
+				transition.forwardMotion = -1;
+			}
+			
 			self.visibleMoments[oldIndex].hide(transition, function() { delete self.visibleMoments[oldIndex] });
 		}
 		self.currentMomentIndex = i;
 		var moment = new Moment(self.momentsData[i]);
 		self.visibleMoments[i] = moment;
+		
+		// create transition:
 		var transition = new Transition();
 		if (i > 0 && self.momentsData[i-1].flight) {
 			// we're landing from a flight
 			transition.upwardMotion = 1;
 		}
+		if (self.momentsData[i].transitionInForward) {
+			transition.forwardMotion = 1;
+		}
+		
 		moment.show(self.scene, transition);
 	}
 	self.start = function() {

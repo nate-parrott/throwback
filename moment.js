@@ -19,7 +19,8 @@ function Moment(data) {
 	if (data.sky) {
         var material = new THREE.MeshBasicMaterial({
             map: THREE.ImageUtils.loadTexture(data.sky),
-            side: THREE.DoubleSide
+            side: THREE.DoubleSide,
+			depthWrite: false
         });
         var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 30, 30 ), material);
 		sky.renderOrder = -1;

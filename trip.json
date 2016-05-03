@@ -12,14 +12,18 @@
 				{"type": "text", "textLines": ["Day 1:", "San Juan,", "Puerto Rico"]},
 				{"type": "image", "url": "photos/test.png"},
 				{"type": "image", "url": "photos/test2.png"}
-			]
+			],
+			"transitionOutForward": true,
+			"duration": 3
 		},
 		{
+			"sky": "sky/pano.jpg",
 			"contents": [
 				{"type": "image", "url": "photos/test.png"},
 				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
 			],
-			"duration": 1.5
+			"transitionInForward": true,
+			"duration": 50
 		}
 	]
 }
