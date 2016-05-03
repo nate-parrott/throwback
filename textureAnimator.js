@@ -9,6 +9,7 @@ function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDurat
 	this.numberOfTiles = numTiles;
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping; 
 	texture.repeat.set( 1 / this.tilesHorizontal, 1 / this.tilesVertical );
+	texture.offset.y = 1 - 1/tilesVert;
 
 	// how long should each image be displayed?
 	this.tileDisplayDuration = tileDispDuration;
@@ -31,8 +32,7 @@ function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDurat
 			var currentColumn = this.currentTile % this.tilesHorizontal;
 			texture.offset.x = currentColumn / this.tilesHorizontal;
 			var currentRow = Math.floor( this.currentTile / this.tilesHorizontal );
-			texture.offset.y = 1 - currentRow / this.tilesVertical;
-			console.log(texture.offset)
+			texture.offset.y = 1 - (currentRow+1) / this.tilesVertical;
 		}
-	};
+	};	
 }		

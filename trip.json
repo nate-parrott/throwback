@@ -15,7 +15,7 @@
 		},
 		{
 			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
-			"duration": 8,
+			"duration": 9,
 			"endMidFlight": true
 		},
 		{
@@ -27,7 +27,7 @@
 				{"type": "image", "url": "photos/test2.png"}
 			],
 			"transitionOutForward": true,
-			"duration": 3
+			"duration": 5
 		},
 		{
 			"sky": "sky/pano.jpg",
