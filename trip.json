@@ -2,7 +2,7 @@
 	"moments": [
 		{
 			"contents": [
-				{"type": "text", "textLines": ["HEY"]}
+				{"type": "text", "textLines": ["starting shortly..."]}
 			],
 			"duration": 6
 		},
@@ -15,7 +15,7 @@
 		},
 		{
 			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
-			"duration": 9,
+			"duration": 12,
 			"endMidFlight": true
 		},
 		{

@@ -1,3 +1,5 @@
+var AUTOSTART = false;
+
 var camera, scene, renderer, model;
 var effect, controls;
 var element, container;
@@ -11,7 +13,7 @@ animate();
  //Beginning of init
 
 function init() {
-	renderer = new THREE.WebGLRenderer();
+	renderer = new THREE.WebGLRenderer({antialias: true});
 	renderer.setClearColor(0x000000);
 	element = renderer.domElement;
 	container = document.getElementById('example');
@@ -65,11 +67,6 @@ function init() {
 
 	window.addEventListener('resize', resize, false);
 	setTimeout(resize, 1);
-	
-	$.get('trip.json', function(data) {
-		trip = new Trip(scene, data);
-		trip.start();
-	})
 }
 
 
@@ -127,3 +124,16 @@ function fullscreen() {
 function getRandomArbitrary(min, max) {
 	return Math.random() * (max - min) + min;
 }
+
+function start() {
+	$("#start").hide();
+	$.get('trip.json', function(data) {
+		trip = new Trip(scene, data);
+		trip.start();
+	})
+	$("#background-music").get(0).play();
+}
+
+$("#start").click(start);
+if (AUTOSTART) start();
+

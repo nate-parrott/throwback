@@ -8,6 +8,7 @@
       body {
         margin: 0px;
         overflow: hidden;
+		font-family: sans-serif;
       }
       #example {
         position: absolute;
@@ -16,10 +17,33 @@
         right: 0;
         bottom: 0;
       }
+	  #start {
+		  position: fixed;
+		  padding: 1em 2em;
+		  background-color: white;
+		  color: black;
+		  font-size: large;
+		  font-weight: bold;
+		  top: 50%;
+		  left: 50%;
+		  text-transform: uppercase;
+		  cursor: default;
+		  margin-left: -65px;
+		  margin-top: -28px;
+	  }
+	  audio {
+		  display: none;
+	  }
     </style>
   </head>
   <body>
     <div id="example"></div>
+	<div id='start'>Start</div>
+	
+	<audio id='background-music' loop='true'>
+	  <source src="audio/drake.mp3" type="audio/mpeg" />
+	</audio>
+	
 	<script src='https://code.jquery.com/jquery-2.2.3.min.js'></script>
 	  
   <script src="static/js/three.js"></script>
