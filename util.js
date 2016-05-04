@@ -36,3 +36,16 @@ function easeIn(t) {
 function easeOut(t) {
 	return easeOutCubic(t, 0, 1, 1);
 }
+
+function setObjectOpacity(obj, opacity) {
+	obj.traverse(function(child) {
+		_setObjectOpacityIndividual(child, opacity);
+	})
+}
+
+function _setObjectOpacityIndividual(obj, opacity) {
+	if (obj.material) {
+		obj.material.transparent = true;
+		obj.material.opacity = opacity;
+	}
+}

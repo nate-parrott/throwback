@@ -10,11 +10,14 @@ transition objects look like this:
 
 var _momentIdx = 0;
 
-function Moment(data) {
+function Moment(data, index) {
 	var self = this;
 	
 	self.group = new THREE.Group();
+	self.contentGroup = new THREE.Group();
+	self.group.add(self.contentGroup);
 	self.group.name = "Moment " + _momentIdx++;
+	self.index = index;
 	
 	if (data.sky) {
         var material = new THREE.MeshBasicMaterial({
@@ -22,15 +25,15 @@ function Moment(data) {
             side: THREE.DoubleSide,
 			depthWrite: false
         });
-        var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 30, 30 ), material);
-		sky.renderOrder = -1;
+        var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 30, 30), material);
+		sky.renderOrder = -1000 - index;
         self.group.add(sky);
 		self.sky = sky;
 	}
 	
 	if (data.flight) {
 		var radius = 200;
-		var segments = 50;
+		var segments = 70;
 		var globe = new THREE.Mesh(
 				new THREE.SphereGeometry(radius, segments, segments),
 				new THREE.MeshPhongMaterial({
@@ -42,43 +45,32 @@ function Moment(data) {
 				})
 		);
 		globe.renderOrder = 2;
-		self.group.add(globe);
+		self.contentGroup.add(globe);
 		self.globe = globe;
 	}
 	
 	self.contents = [];
 	if (data.contents) {
-		var angleDelta = 49;
-		var totalAngleDelta = angleDelta * data.contents.length;
+		var angleDelta = -49;
+		var totalAngleDelta = angleDelta * (data.contents.length - 1);
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
-			var angle = -18 + (data.contents.length - i) * angleDelta + offset;
-			var c = new Contents(item, angle, self.group);
+			var angle = i * angleDelta + offset;
+			var c = new Contents(item, angle, self.contentGroup);
 			self.contents.push(c);
 		})
 	}
 	
-	self.show = function(scene, transition) {
+	self.show = function(scene) {
 		self.scene = scene;
 		self.scene.add(self.group)
 		self.elapsed = 0;
 		self.done = false;
-		self.inTransition = transition;
 	}
 	
-	self.hide = function(transition, finishedCallback) {
-		var done = function() {
-			self.scene.remove(self.group);
-			self.scene = null;
-			finishedCallback();
-		}
-		if (transition) {
-			self.outTransition = transition;
-			self.onOutTransitionDone = done;
-			self.hiddenAtTime = self.elapsed;
-		} else {
-			done();
-		}
+	self.hide = function() {
+		self.scene.remove(self.group);
+		self.scene = null;
 	}
 	
 	self.elapsed = 0;
@@ -90,20 +82,6 @@ function Moment(data) {
 		})
 		if (data.duration && self.elapsed >= data.duration && !self.done) {
 			self.done = true;
-		}
-		if (self.inTransition) {
-			var progress = easeOut(Math.min(1, self.elapsed / self.inTransition.duration));
-			self.inTransition.tick(self, progress);
-			if (progress == 1) {
-				delete self.inTransition;
-			}
-		}
-		if (self.outTransition) {
-			var transitionProgress = easeIn(Math.min(1, (self.elapsed - self.hiddenAtTime) / self.outTransition.duration));
-			self.outTransition.tick(self, 1-transitionProgress);
-			if (transitionProgress == 1) {
-				self.onOutTransitionDone();
-			}
 		}
 		if (data.flight) {
 			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
