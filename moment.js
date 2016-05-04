@@ -52,7 +52,7 @@ function Moment(data) {
 		var totalAngleDelta = angleDelta * data.contents.length;
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
-			var angle = (data.contents.length - i) * angleDelta + offset;
+			var angle = -18 + (data.contents.length - i) * angleDelta + offset;
 			var c = new Contents(item, angle, self.group);
 			self.contents.push(c);
 		})

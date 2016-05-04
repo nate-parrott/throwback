@@ -100,13 +100,13 @@ function addTextContents(self, node, textLines, angle, vertAngle) {
 							new THREE.MeshPhongMaterial( { color: 0xcccccc, shading: THREE.SmoothShading } ) // side
 						] );*/
 		var material = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ); // front
-		var size = 3;
+		var size = 4.5;
 		var totalHeight = size * 1.5 * textLines.length;
 		textLines.forEach(function(text, i) {
 			var textGeo = new THREE.TextGeometry(text, {
 								font: font,
-								size: 3.5,
-								height: 0.2,
+								size: size,
+								height: 0.01,
 								material: 0
 							});
 			textGeo.computeBoundingBox();

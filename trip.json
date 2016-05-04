@@ -1,42 +1,8 @@
 {
 	"moments": [
 		{
-			"sky": "scenes/city/sky.jpg",
-			"contents": [
-				{"type": "image", "url": "scenes/city/walk.jpg"},
-				{"type": "image", "url": "scenes/city/red.jpg"},
-				{"type": "image", "url": "scenes/city/lean.jpg"},
-				{"type": "image", "url": "scenes/city/young.jpg"},
-				{"type": "image", "url": "scenes/city/house.jpg"}
-			]
-		},
-		{
-			"contents": [
-				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
-				{"type": "image", "url": "scenes/forest/fruit.jpg"},
-				{"type": "image", "url": "scenes/forest/kids.jpg"}
-			],
-			"sky": "scenes/forest/sky.jpg"
-		},
-		{
-			"contents": [
-				{"type": "text", "textLines": ["Day 2:", "Some fucking", "fort"]},
-				{"type": "image", "url": "scenes/fort/friends.jpg"},
-				{"type": "image", "url": "scenes/fort/flags.jpg"},
-				{"type": "image", "url": "scenes/fort/three.jpg"}
-			],
-			"sky": "scenes/fort/sky.jpg"
-		},
-		{
 			"contents": [
 				{"type": "text", "textLines": ["starting shortly..."]}
-			],
-			"duration": 6
-		},
-		{
-			"contents": [
-				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]},
-				{"count": 88, "rows": 10, "url": "videos/testvid.jpg", "framerate": 13, "type": "video", "columns": 9}
 			],
 			"duration": 6
 		},
@@ -46,24 +12,61 @@
 			"endMidFlight": true
 		},
 		{
-			"sky": "sky/france.png",
-			"caption": "Day 1: San Juan, Puerto Rico",
+			"sky": "scenes/airport/sky.jpg",
 			"contents": [
-				{"type": "text", "textLines": ["Day 1:", "San Juan,", "Puerto Rico"]},
-				{"type": "image", "url": "photos/test.png"},
-				{"type": "image", "url": "photos/test2.png"}
+				{"type": "text", "textLines": ["Day 1:", "San Juan", "Puerto Rico"]},
+				{"type": "image", "url": "scenes/airport/friends.jpg"},
+				{"type": "image", "url": "scenes/airport/stop.jpg"}
 			],
-			"transitionOutForward": true,
-			"duration": 5
+			"duration": 9
 		},
 		{
-			"sky": "sky/pano.jpg",
+			"sky": "scenes/beach/sky.jpg",
 			"contents": [
-				{"type": "image", "url": "photos/test.png"},
-				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
+				{"type": "image", "url": "scenes/beach/coconut.jpg"},
+				{"count": 118, "rows": 11, "url": "scenes/beach/beach.jpg", "framerate": 13, "type": "video", "columns": 11},
+				{"type": "text", "textLines": ["Day 1:", "San Juan", "beach"]}
 			],
-			"transitionInForward": true,
-			"duration": 5
+			"duration": 9
+		},
+		{
+			"sky": "scenes/city/sky.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Day 1:", "Exploring", "the city"]},
+				{"type": "image", "url": "scenes/city/walk.jpg"},
+				{"type": "image", "url": "scenes/city/red.jpg"},
+				{"type": "image", "url": "scenes/city/lean.jpg"},
+				{"type": "image", "url": "scenes/city/young.jpg"},
+				{"type": "image", "url": "scenes/city/house.jpg"}
+			],
+			"duration": 9
+		},
+		{
+			"contents": [
+				{"type": "text", "textLines": ["Day 3:", "El Yunque", "rainforest"]},
+				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
+				{"type": "image", "url": "scenes/forest/fruit.jpg"},
+				{"type": "image", "url": "scenes/forest/kids.jpg"}
+			],
+			"sky": "scenes/forest/sky.jpg",
+			"duration": 9
+		},
+		{
+			"contents": [
+				{"type": "text", "textLines": ["Day 4:", "Castillo", "del Morro"]},
+				{"type": "image", "url": "scenes/fort/friends.jpg"},
+				{"type": "image", "url": "scenes/fort/flags.jpg"},
+				{"type": "image", "url": "scenes/fort/three.jpg"}
+			],
+			"sky": "scenes/fort/sky.jpg",
+			"duration": 9
+		},
+		{
+			"contents": [
+				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]},
+				{"count": 88, "rows": 10, "url": "videos/testvid.jpg", "framerate": 13, "type": "video", "columns": 9}
+			],
+			"duration": 6
 		}
 	]
 }
