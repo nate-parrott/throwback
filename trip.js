@@ -5,23 +5,44 @@ function Trip(scene, data) {
 	self.lookAngle = 0;
 	
 	self.currentMomentIndex = null;
+	self.currentTransition = null;
 	self.visibleMoments = {};
 	self.showMomentAtIndex = function(i) {
-		if (self.visibleMoments[self.currentMomentIndex]) {
+		var oldIndex = self.currentMomentIndex;
+		/*if (self.visibleMoments[self.currentMomentIndex]) {
 			var oldIndex = self.currentMomentIndex;
 			self.visibleMoments[oldIndex].hide();
 			delete self.visibleMoments[oldIndex]
-		}
+		}*/
 		self.currentMomentIndex = i;
 		var moment = new Moment(self.momentsData[i], i, self.lookAngle);
 		self.visibleMoments[i] = moment;
-		
 		moment.show(self.scene);
+		
+		// create a new transition:
+		if (oldIndex !== null) {
+			if (self.currentTransition) self.currentTransition.completion();
+			var prevMoment = self.visibleMoments[oldIndex];
+			var completion = function() {
+				prevMoment.hide();
+				delete self.visibleMoments[oldIndex];
+			}
+			self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 0.5});
+			self.currentTransition.tick(0);
+		}
 	}
 	self.start = function() {
 		self.showMomentAtIndex(0);
 	}
 	self.tick = function(dt) {
+		if (self.currentTransition) {
+			self.currentTransition.tick(dt);
+			if (self.currentTransition.elapsed >= self.currentTransition.duration) {
+				self.currentTransition.completion();
+				self.currentTransition = null;
+			}
+		}
+		
 		var keys = Object.keys(self.visibleMoments);
 		for (var i=0; i<keys.length; i++) {
 			var momentIndex = keys[i];
