@@ -4,14 +4,16 @@
 			"contents": [
 				{"type": "image", "url": "scenes/airport/friends.jpg"}
 			],
+			"caption": ["Day 1: San Juan, Puerto Rico"],
 			"sky": "scenes/airport/sky.jpg",
-			"duration": 3
+			"duration": 30
 		},
 		{
 			"contents": [
 				{"type": "image", "url": "scenes/airport/stop.jpg"},
 				{"type": "image", "url": "scenes/airport/stop.jpg"}
 			],
+			"caption": ["Day 1: San Juan, Puerto Rico"],
 			"sky": "scenes/beach/sky.jpg",
 			"duration": 3
 		},

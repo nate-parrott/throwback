@@ -1,11 +1,12 @@
-var Contents = function(data, angle, node) {
+var Contents = function(data, angle, node, vertAngle) {
 	var self = this;
+	vertAngle = vertAngle || 0;
 	if (data.type === 'image') {
-		addImageContents(self, node, data.url, angle, 0);
+		addImageContents(self, node, data.url, angle, vertAngle);
 	} else if (data.type === 'text') {
-		addTextContents(self, node, data.textLines, angle, 0);
+		addTextContents(self, node, data.textLines, angle, vertAngle);
 	} else if (data.type === 'video') {
-		addVideoContents(self, node, data.url, data.columns, data.rows, data.count, data.framerate, angle, 0);
+		addVideoContents(self, node, data.url, data.columns, data.rows, data.count, data.framerate, angle, vertAngle);
 	}
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
@@ -116,6 +117,7 @@ function addTextContents(self, node, textLines, angle, vertAngle) {
 			var mesh = new THREE.Mesh(textGeo, material);
 			positionContentObject(mesh, angle, vertAngle, false);
 			mesh.translateY(-(size * 1.5 * i - totalHeight/2));
+			mesh.translateX(-width/2);
 			node.add(mesh);
 		});
 	} );

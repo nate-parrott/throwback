@@ -61,6 +61,10 @@ function Moment(data, index, lookAngle) {
 		})
 	}
 	
+	if (data.caption) {
+		var cap = new Contents({type: 'text', 'textLines': data.caption}, -lookAngle, self.contentGroup, -30);
+	}
+	
 	self.show = function(scene) {
 		self.scene = scene;
 		self.scene.add(self.group)
