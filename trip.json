@@ -12,32 +12,41 @@
 				{"type": "image", "url": "scenes/airport/stop.jpg"},
 				{"type": "image", "url": "scenes/airport/stop.jpg"}
 			],
+			"sky": "scenes/beach/sky.jpg",
 			"duration": 3
 		},
 		{
 			"contents": [
-				{"type": "image", "url": "scenes/airport/friends.jpg"},
+				{"type": "image", "url": "scenes/airport/stop.jpg"},
 				{"type": "image", "url": "scenes/airport/friends.jpg"},
 				{"type": "image", "url": "scenes/airport/friends.jpg"}
 			],
+			"sky": "scenes/airport/sky.jpg",
+			
 			"duration": 3
 		},
 		{
 			"contents": [
 				{"type": "image", "url": "scenes/airport/stop.jpg"}
 			],
+			"sky": "scenes/beach/sky.jpg",
+			
 			"duration": 3
 		},
 		{
 			"contents": [
 				{"type": "image", "url": "scenes/airport/friends.jpg"}
 			],
+			"sky": "scenes/airport/sky.jpg",
+			
 			"duration": 3
 		},
 		{
 			"contents": [
 				{"type": "image", "url": "scenes/airport/stop.jpg"}
 			],
+			"sky": "scenes/beach/sky.jpg",
+			
 			"duration": 3
 		},
 		
@@ -89,8 +98,8 @@
 		},
 		{
 			"contents": [
-				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
 				{"type": "image", "url": "scenes/forest/fruit.jpg"},
+				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
 				{"type": "image", "url": "scenes/forest/kids.jpg"}
 			],
 			"caption": ["Day 3: El Yunque Rainforest"],

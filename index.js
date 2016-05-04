@@ -87,7 +87,13 @@ function update(dt) {
 
 	camera.updateProjectionMatrix();
 	
-	if (trip) trip.tick(dt);
+	var lookVec = new THREE.Vector3();
+	camera.getWorldDirection(lookVec);
+	// default look vector: (1,0,0)
+	if (trip) {
+		trip.lookAngle = Math.atan2(lookVec.z, lookVec.x) * 180 / Math.PI;
+		trip.tick(dt);
+	}
 	
 	controls.update(dt);
 }

@@ -10,7 +10,7 @@ transition objects look like this:
 
 var _momentIdx = 0;
 
-function Moment(data, index) {
+function Moment(data, index, lookAngle) {
 	var self = this;
 	
 	self.group = new THREE.Group();
@@ -53,7 +53,7 @@ function Moment(data, index) {
 	if (data.contents) {
 		var angleDelta = -49;
 		var totalAngleDelta = angleDelta * (data.contents.length - 1);
-		var offset = -totalAngleDelta/2;
+		var offset = -totalAngleDelta/2 - lookAngle;
 		data.contents.forEach(function(item, i) {
 			var angle = i * angleDelta + offset;
 			var c = new Contents(item, angle, self.contentGroup);

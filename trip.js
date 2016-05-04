@@ -2,6 +2,8 @@ function Trip(scene, data) {
 	var self = this;
 	self.momentsData = data.moments;
 	self.scene = scene;
+	self.lookAngle = 0;
+	
 	self.currentMomentIndex = null;
 	self.visibleMoments = {};
 	self.showMomentAtIndex = function(i) {
@@ -11,7 +13,7 @@ function Trip(scene, data) {
 			delete self.visibleMoments[oldIndex]
 		}
 		self.currentMomentIndex = i;
-		var moment = new Moment(self.momentsData[i], i);
+		var moment = new Moment(self.momentsData[i], i, self.lookAngle);
 		self.visibleMoments[i] = moment;
 		
 		moment.show(self.scene);
