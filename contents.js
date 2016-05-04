@@ -17,7 +17,7 @@ function positionContentObject(obj, angle, vertAngle, random) {
  	obj.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
 	obj.rotateX(vertAngle * Math.PI / 180);
 	if (random) obj.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.03)
- 	obj.translateZ(-70);
+ 	obj.translateZ(-65);
 }
 
 function addVideoContents(self, node, url, columns, rows, count, framerate, angle, vertAngle) {

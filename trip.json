@@ -1,6 +1,24 @@
 {
 	"moments": [
 		{
+			"sky": "scenes/city/sky.jpg",
+			"contents": [
+				{"type": "image", "url": "scenes/city/walk.jpg"},
+				{"type": "image", "url": "scenes/city/red.jpg"},
+				{"type": "image", "url": "scenes/city/lean.jpg"},
+				{"type": "image", "url": "scenes/city/young.jpg"},
+				{"type": "image", "url": "scenes/city/house.jpg"}
+			]
+		},
+		{
+			"contents": [
+				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
+				{"type": "image", "url": "scenes/forest/fruit.jpg"},
+				{"type": "image", "url": "scenes/forest/kids.jpg"}
+			],
+			"sky": "scenes/forest/sky.jpg"
+		},
+		{
 			"contents": [
 				{"type": "text", "textLines": ["Day 2:", "Some fucking", "fort"]},
 				{"type": "image", "url": "scenes/fort/friends.jpg"},
