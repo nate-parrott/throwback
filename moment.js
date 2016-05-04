@@ -62,7 +62,7 @@ function Moment(data, index, lookAngle) {
 	}
 	
 	if (data.caption) {
-		var cap = new Contents({type: 'text', 'textLines': data.caption}, -lookAngle, self.contentGroup, -30);
+		var cap = new Contents({type: 'text', 'textLines': data.caption}, -lookAngle, self.contentGroup, -35);
 	}
 	
 	self.show = function(scene) {
