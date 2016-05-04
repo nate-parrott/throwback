@@ -9,9 +9,9 @@ import math
 import json
 import math
 
-def extract_video(video_path, output_dir, framerate):
+def extract_video(video_path, output_dir, framerate, width=200):
     ensure_clear_dir(output_dir)
-    cmd = "ffmpeg -i {0} -vsync 1 -r {1} {2}".format(pipes.quote(video_path), framerate, pipes.quote(os.path.join(output_dir, '%03d.png')))
+    cmd = "ffmpeg -i {0} -vsync 1 -vf scale={3}:-1 -r {1} {2}".format(pipes.quote(video_path), framerate, pipes.quote(os.path.join(output_dir, '%03d.png')), width)
     os.system(cmd)
 
 def create_spritesheet(video_path, output_path, framerate=13):
@@ -21,7 +21,7 @@ def create_spritesheet(video_path, output_path, framerate=13):
     frame_names.sort(key=lambda name: int(name.split('.')[0]))
     frame_paths = [os.path.join(temp_dir, name) for name in frame_names]
     size = Image.open(frame_paths[0]).size
-    size = (int(size[0] * 0.25), int(size[1] * 0.25))
+    @ size = (int(size[0] * 0.25), int(size[1] * 0.25))
     count = len(frame_paths)
     columns = int(round(count ** 0.5))
     rows = int(math.ceil(count * 1.0 / columns))
