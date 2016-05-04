@@ -6,6 +6,7 @@ function Trip(scene, data) {
 	
 	self.currentMomentIndex = null;
 	self.currentTransition = null;
+	self.preloadedMoments = {};
 	self.visibleMoments = {};
 	self.showMomentAtIndex = function(i) {
 		var oldIndex = self.currentMomentIndex;
@@ -15,7 +16,8 @@ function Trip(scene, data) {
 			delete self.visibleMoments[oldIndex]
 		}*/
 		self.currentMomentIndex = i;
-		var moment = new Moment(self.momentsData[i], i, self.lookAngle);
+		var moment = self.getMomentAtIndex(i);
+		moment.contentGroup.rotateY(-self.lookAngle * Math.PI / 180);
 		self.visibleMoments[i] = moment;
 		moment.show(self.scene);
 		
@@ -29,6 +31,26 @@ function Trip(scene, data) {
 			}
 			self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 0.5});
 			self.currentTransition.tick(0);
+		}
+		self.ensurePreload();
+	}
+	self.getMomentAtIndex = function(i) {
+		var moment = self.preloadedMoments[i];
+		if (moment) {
+			delete self.preloadedMoments[i];
+		} else {
+			moment = new Moment(self.momentsData[i], i);
+		}
+		return moment;
+	}
+	self.ensurePreload = function() {
+		Object.keys(self.preloadedMoments).forEach(function(i) {
+			if (i != self.currentMomentIndex + 1) {
+				delete self.preloadedMoments[i];
+			}
+		});
+		if (!self.preloadedMoments[self.currentMomentIndex]) {
+			self.preloadedMoments[self.currentMomentIndex] = self.getMomentAtIndex(self.currentMomentIndex);
 		}
 	}
 	self.start = function() {
