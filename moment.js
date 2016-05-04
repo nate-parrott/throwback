@@ -48,7 +48,7 @@ function Moment(data) {
 	
 	self.contents = [];
 	if (data.contents) {
-		var angleDelta = 45;
+		var angleDelta = 49;
 		var totalAngleDelta = angleDelta * data.contents.length;
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {

@@ -39,7 +39,7 @@ function addVideoContents(self, node, url, columns, rows, count, framerate, angl
 			map: texture,
 			side: THREE.DoubleSide
 		 } );
-		var size = 40;
+		var size = 50;
 		self.animator = new TextureAnimator( texture, columns, rows, count, 1000/framerate ); // texture, #horiz, #vert, #total, duration.
 		var runnerMaterial = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
 		var runnerGeometry = new THREE.PlaneGeometry(size * geoWidth, size * geoHeight, 1, 1);
@@ -71,7 +71,7 @@ function addImageContents(self, node, url, angle, vertAngle) {
 				map: texture,
 				side: THREE.DoubleSide
 			 } );
-			var size = 40;
+			var size = 50;
 		 	var geometry = new THREE.PlaneGeometry( size * geoWidth, size * geoHeight);
 		 	// var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
 		 	var plane = new THREE.Mesh( geometry, material );
@@ -105,7 +105,7 @@ function addTextContents(self, node, textLines, angle, vertAngle) {
 		textLines.forEach(function(text, i) {
 			var textGeo = new THREE.TextGeometry(text, {
 								font: font,
-								size: 3,
+								size: 3.5,
 								height: 0.2,
 								material: 0
 							});

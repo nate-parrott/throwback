@@ -2,6 +2,15 @@
 	"moments": [
 		{
 			"contents": [
+				{"type": "text", "textLines": ["Day 2:", "Some fucking", "fort"]},
+				{"type": "image", "url": "scenes/fort/friends.jpg"},
+				{"type": "image", "url": "scenes/fort/flags.jpg"},
+				{"type": "image", "url": "scenes/fort/three.jpg"}
+			],
+			"sky": "scenes/fort/sky.jpg"
+		},
+		{
+			"contents": [
 				{"type": "text", "textLines": ["starting shortly..."]}
 			],
 			"duration": 6
