@@ -63,8 +63,7 @@
 		},
 		{
 			"contents": [
-				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]},
-				{"count": 88, "rows": 10, "url": "videos/testvid.jpg", "framerate": 13, "type": "video", "columns": 9}
+				{"type": "text", "textLines": ["until next year..."]}
 			],
 			"duration": 6
 		}
