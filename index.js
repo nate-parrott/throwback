@@ -6,23 +6,20 @@ var element, container;
 var trip;
 var clock = new THREE.Clock();
 
-
-init();
-animate();
-
  //Beginning of init
 
-function init() {
+function init(cardboard) {
 	renderer = new THREE.WebGLRenderer({antialias: true});
 	renderer.setClearColor(0x000000);
 	element = renderer.domElement;
 	container = document.getElementById('example');
 	container.appendChild(element);
-
-	effect = new THREE.StereoEffect(renderer);
-
+	
+	if (cardboard) {
+		effect = new THREE.StereoEffect(renderer);
+	}
+	
 	scene = new THREE.Scene();
-
 
 	// camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
 	camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 100000);
@@ -79,7 +76,9 @@ function resize() {
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(width, height);
-	effect.setSize(width, height);
+	if (effect) {
+		effect.setSize(width, height);
+	}
 }
 
 function update(dt) {
@@ -99,7 +98,11 @@ function update(dt) {
 }
 
 function render(dt) {
-	effect.render(scene, camera);
+	if (effect) {
+		effect.render(scene, camera);
+	} else {
+		renderer.render(scene, camera);
+	}
 }
 
 function animate(t) {
@@ -131,8 +134,10 @@ function getRandomArbitrary(min, max) {
 	return Math.random() * (max - min) + min;
 }
 
-function start() {
-	$("#start").hide();
+function start(cardboard) {
+	init(cardboard);
+	animate();
+	$("#splash").hide();
 	$.get('trip.json', function(data) {
 		trip = new Trip(scene, data);
 		trip.start();
@@ -140,6 +145,11 @@ function start() {
 	$("#background-music").get(0).play();
 }
 
-$("#start").click(start);
+$("#start-cardboard").click(function() {
+	start(true);
+});
+$("#start-normal").click(function() {
+	start(false);
+})
 if (AUTOSTART) start();
 

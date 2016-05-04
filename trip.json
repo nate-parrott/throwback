@@ -10,7 +10,8 @@
 			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
 			"duration": 12,
 			"endMidFlight": true,
-			"sky": "sky/stars.jpg"
+			"sky": "sky/stars.jpg",
+			"caption": ["BOS to SJU"]
 		},
 		{
 			"sky": "scenes/airport/sky.jpg",
