@@ -26,7 +26,10 @@ function Transition(prevMoment, nextMoment, completion, options) {
 			var extraSpeed = 2;
 			var contentEntrance = easeInOut(clampOpacity((p-0.5)*2*extraSpeed));
 			nextMoment.contentGroup.position.copy(new THREE.Vector3(0, -25 * (1-contentEntrance), 0));
-			var scale = 1 + (1 - contentEntrance) * 2;
+			var scale = 1;
+			if (!nextMoment.data.noContentFlyUp) {
+				scale = 1 + (1 - contentEntrance) * 2;
+			}
 			nextMoment.contentGroup.scale.copy(new THREE.Vector3(scale, scale, scale));
 			setObjectOpacity(nextMoment.contentGroup, contentEntrance);
 		}

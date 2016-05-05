@@ -19,6 +19,7 @@ function Moment(data, index) {
 	self.group.add(self.contentGroup);
 	self.group.name = "Moment " + _momentIdx++;
 	self.index = index;
+	self.data = data;
 	
 	if (data.sky) {
         var material = new THREE.MeshBasicMaterial({
@@ -92,8 +93,9 @@ function Moment(data, index) {
 			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
 			var toQ = quaternionFromLatLng(data.flight.to[0], data.flight.to[1]);
 			var duration = data.duration;
-			if (data.endMidFlight) duration *= 1.1;
-			var progress = easeInOut(Math.min(1, self.elapsed / duration));
+			var initialFlightDelay = 0.25;
+			var p = Math.max(0, (self.elapsed/duration - initialFlightDelay) / (1 - initialFlightDelay));
+			var progress = easeInOut(p);
 			fromQ.slerp(toQ, progress);
 			self.globe.quaternion.copy(fromQ);
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;

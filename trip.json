@@ -10,9 +10,9 @@
 		{
 			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
 			"duration": 12,
-			"endMidFlight": true,
 			"sky": "sky/stars.jpg",
-			"contents": [{"type": "text", "textLines": ["Boston to", "San Juan"]}]
+			"contents": [{"type": "text", "textLines": ["Boston to", "San Juan"]}],
+			"noContentFlyUp": true
 		},
 		{
 			"sky": "scenes/airport/sky.jpg",
