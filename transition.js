@@ -19,12 +19,16 @@ function Transition(prevMoment, nextMoment, completion, options) {
 			if (prevMoment.sky) {
 				setObjectOpacity(prevMoment.sky, 1-p);
 			}
-			var contentOpacity = easeIn(clampOpacity(1 - progress*2));
-			setObjectOpacity(prevMoment.contentGroup, contentOpacity);
+			var contentEntrance = easeIn(clampOpacity(1 - progress*2));
+			setObjectOpacity(prevMoment.contentGroup, contentEntrance);
 		}
 		if (nextMoment) {
-			var contentOpacity = easeIn(clampOpacity((p-0.5)*2));
-			setObjectOpacity(nextMoment.contentGroup, contentOpacity);
+			var extraSpeed = 2;
+			var contentEntrance = easeIn(clampOpacity((p-0.5)*2*extraSpeed));
+			nextMoment.contentGroup.position.copy(new THREE.Vector3(0, -25 * (1-contentEntrance), 0));
+			var scale = 1 + (1 - contentEntrance) * 2;
+			nextMoment.contentGroup.scale.copy(new THREE.Vector3(scale, scale, scale));
+			setObjectOpacity(nextMoment.contentGroup, contentEntrance);
 		}
 	}
 }

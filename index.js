@@ -6,6 +6,17 @@ var element, container;
 var trip;
 var clock = new THREE.Clock();
 
+function isMobile() {
+	var nav = navigator.userAgent;
+	var mobile = false;
+	['Android', 'Mobile'].forEach(function(word) {
+		if (nav.indexOf(word) != -1) {
+			mobile = true;
+		}
+	})
+	return mobile;
+}
+
  //Beginning of init
 
 function init(cardboard) {
@@ -26,9 +37,9 @@ function init(cardboard) {
 	camera.position.set(0, 0, 0);
 	camera.rotation.y = -90 * Math.PI / 180;
 	scene.add(camera);
-
+	
 	controls = new THREE.OrbitControls(camera, element);
-	controls.rotateUp(Math.PI / 4);
+	controls.rotateUp(0);
 	controls.target.set(
 		camera.position.x + 0.1,
 		camera.position.y,
@@ -36,7 +47,7 @@ function init(cardboard) {
 	);
 	controls.noZoom = true;
 	controls.noPan = true;
-
+	
 	function setOrientationControls(e) {
 		if (!e.alpha) {
 			return;
@@ -81,6 +92,7 @@ function resize() {
 	}
 }
 
+_lookAngle = 0;
 function update(dt) {
 	resize();
 
@@ -88,9 +100,10 @@ function update(dt) {
 	
 	var lookVec = new THREE.Vector3();
 	camera.getWorldDirection(lookVec);
+	_lookAngle = Math.atan2(lookVec.z, lookVec.x) * 180 / Math.PI;
 	// default look vector: (1,0,0)
 	if (trip) {
-		trip.lookAngle = Math.atan2(lookVec.z, lookVec.x) * 180 / Math.PI;
+		trip.lookAngle = _lookAngle;
 		trip.tick(dt);
 	}
 	
@@ -139,7 +152,7 @@ function start(cardboard) {
 	animate();
 	$("#splash").hide();
 	$.get('trip.json', function(data) {
-		trip = new Trip(scene, data);
+		trip = new Trip(scene, data, _lookAngle);
 		trip.start();
 	})
 	$("#background-music").get(0).play();

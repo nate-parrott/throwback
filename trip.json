@@ -1,8 +1,9 @@
 {
 	"moments": [
 		{
+			"sky": "sky/stars.jpg",
 			"contents": [
-				{"type": "text", "textLines": ["Throwback", "starting shortly..."]}
+				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
 			],
 			"duration": 8
 		},
@@ -11,7 +12,7 @@
 			"duration": 12,
 			"endMidFlight": true,
 			"sky": "sky/stars.jpg",
-			"caption": ["BOS to SJU"]
+			"contents": [{"type": "text", "textLines": ["Boston to", "San Juan"]}]
 		},
 		{
 			"sky": "scenes/airport/sky.jpg",
@@ -64,6 +65,7 @@
 			"duration": 9
 		},
 		{
+			"sky": "sky/stars.jpg",
 			"contents": [
 				{"type": "text", "textLines": ["until next year..."]}
 			],

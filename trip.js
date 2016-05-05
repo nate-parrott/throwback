@@ -1,8 +1,8 @@
-function Trip(scene, data) {
+function Trip(scene, data, initialLookAngle) {
 	var self = this;
 	self.momentsData = data.moments;
 	self.scene = scene;
-	self.lookAngle = 0;
+	self.lookAngle = initialLookAngle || 0;
 	
 	self.currentMomentIndex = null;
 	self.currentTransition = null;
