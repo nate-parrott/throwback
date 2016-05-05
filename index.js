@@ -52,8 +52,6 @@ function init(cardboard) {
 		if (!e.alpha) {
 			return;
 		}
-		
-		if (!window.firstOrientation) alert('first')
 
 		controls = new THREE.DeviceOrientationControls(camera, true);
 		controls.connect();
@@ -154,8 +152,10 @@ function start(cardboard) {
 	animate();
 	$("#splash").hide();
 	$.get('trip.json', function(data) {
-		trip = new Trip(scene, data, _lookAngle);
-		trip.start();
+		setTimeout(function() {
+			trip = new Trip(scene, data, _lookAngle);
+			trip.start();
+		}, 500);
 	})
 	$("#background-music").get(0).play();
 }
