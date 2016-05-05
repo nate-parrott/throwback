@@ -22,6 +22,9 @@ function isMobile() {
 function init(cardboard) {
 	renderer = new THREE.WebGLRenderer({antialias: true});
 	renderer.setClearColor(0x000000);
+	if (location.hash != '#noretina') {
+		renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
+	}
 	element = renderer.domElement;
 	container = document.getElementById('example');
 	container.appendChild(element);
