@@ -37,6 +37,7 @@ function easeOut(t) {
 	return easeOutCubic(t, 0, 1, 1);
 }
 
+var wasLow = false;
 function setObjectOpacity(obj, opacity) {
 	obj.traverse(function(child) {
 		_setObjectOpacityIndividual(child, opacity);
@@ -45,7 +46,16 @@ function setObjectOpacity(obj, opacity) {
 
 function _setObjectOpacityIndividual(obj, opacity) {
 	if (obj.material) {
-		obj.material.transparent = true;
-		obj.material.opacity = opacity;
+		if (opacity <= 0) {
+			obj.visible = false;
+			obj._hiddenByOpacity = true;
+		} else {
+			if (!obj.visible && obj._hiddenByOpacity) {
+				obj.visible = true;
+				delete obj._hiddenByOpacity;
+			}
+			obj.material.transparent = true;
+			obj.material.opacity = opacity;
+		}
 	}
 }

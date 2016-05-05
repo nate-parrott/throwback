@@ -15,6 +15,7 @@ function Moment(data, index) {
 	
 	self.group = new THREE.Group();
 	self.contentGroup = new THREE.Group();
+	self.contentGroup.name = 'ContentGroup' + index;
 	self.group.add(self.contentGroup);
 	self.group.name = "Moment " + _momentIdx++;
 	self.index = index;
