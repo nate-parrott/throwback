@@ -52,6 +52,8 @@ function init(cardboard) {
 		if (!e.alpha) {
 			return;
 		}
+		
+		if (!window.firstOrientation) alert('first')
 
 		controls = new THREE.DeviceOrientationControls(camera, true);
 		controls.connect();

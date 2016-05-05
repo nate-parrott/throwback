@@ -3,7 +3,7 @@ function Trip(scene, data, initialLookAngle) {
 	self.momentsData = data.moments;
 	self.scene = scene;
 	self.lookAngle = initialLookAngle || 0;
-	alert(self.lookAngle);
+	alert('initial')
 	
 	self.currentMomentIndex = null;
 	self.currentTransition = null;
