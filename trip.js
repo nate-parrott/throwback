@@ -49,8 +49,8 @@ function Trip(scene, data) {
 				delete self.preloadedMoments[i];
 			}
 		});
-		if (!self.preloadedMoments[self.currentMomentIndex]) {
-			self.preloadedMoments[self.currentMomentIndex] = self.getMomentAtIndex(self.currentMomentIndex);
+		if (!self.preloadedMoments[self.currentMomentIndex+1]) {
+			self.preloadedMoments[self.currentMomentIndex+1] = self.getMomentAtIndex(self.currentMomentIndex);
 		}
 	}
 	self.start = function() {
