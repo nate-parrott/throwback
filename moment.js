@@ -127,7 +127,6 @@ function Moment(data, index) {
 	
 	// gesture actions:
 	self.dismissOverlaysAndFinish = function() {
-		console.log('DISMISS')
 		self.overlays.forEach(function(o) {
 			console.log(o)
 			if (o.mesh) o.mesh.parent.remove(o.mesh);

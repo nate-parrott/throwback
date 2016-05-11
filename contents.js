@@ -5,6 +5,8 @@ var Contents = function(data, node, positionInfo) {
 	if (data.nod) positionInfo.nod = data.nod;
 	if (data.appearanceDelay) positionInfo.appearanceDelay = data.appearanceDelay;
 	if (data.random) positionInfo.random = data.random;
+	if (data.wobble) positionInfo.wobble = data.wobble;
+	if (data.steadilyAdvancing) positionInfo.steadilyAdvancing = data.steadilyAdvancing;
 	
 	if (data.type === 'image') {
 		addImageContents(self, node, data, function(node){
@@ -32,7 +34,7 @@ var Contents = function(data, node, positionInfo) {
 			positionInfo.angle = -Math.atan2(look.z, look.x) / Math.PI * 180;
 			shouldReposition = true
 		}
-		if (positionInfo.nod || positionInfo.appearanceDelay) {
+		if (positionInfo.nod || positionInfo.appearanceDelay || positionInfo.wobble || positionInfo.steadilyAdvancing) {
 			shouldReposition = true
 		}
 		if (shouldReposition) {
@@ -70,6 +72,14 @@ function positionContentObject(obj, positionInfo) {
 		scale += positionInfo._rand.s;
 	}
 	
+	if (positionInfo.wobble) {
+		spinRotation = Math.sin(TIME * positionInfo.wobble) * 20;
+	}
+	
+	if (positionInfo.steadilyAdvancing) {
+		distance -= (TIME - MOMENT_APPEARANCE_TIME) * 4;
+	}
+	
 	var objPos = new THREE.Vector3(distance,0,0);
 	objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
 	objPos.applyAxisAngle(new THREE.Vector3(0,1,0), angle * Math.PI / 180);
@@ -81,6 +91,7 @@ function positionContentObject(obj, positionInfo) {
 		var t = Math.sin(TIME * positionInfo.nod);
 		obj.rotateY(t * Math.PI * 2 * 0.1);
 	}
+	if (spinRotation) obj.rotateZ(spinRotation / 180 * Math.PI);
 	obj.scale.set(scale,scale,scale);
 	
 	if (positionInfo.translate) {
