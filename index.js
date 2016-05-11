@@ -1,5 +1,7 @@
 var AUTOSTART = false;
 
+var LOOK_VEC = new THREE.Vector3(0,0,-1);
+
 var camera, scene, renderer, model;
 var effect, controls;
 var element, container;
@@ -103,6 +105,7 @@ function update(dt) {
 	
 	var lookVec = new THREE.Vector3();
 	camera.getWorldDirection(lookVec);
+	LOOK_VEC = lookVec;
 	_lookAngle = Math.atan2(lookVec.z, lookVec.x) * 180 / Math.PI;
 	// default look vector: (1,0,0)
 	if (trip) {

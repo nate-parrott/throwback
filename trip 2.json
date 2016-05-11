@@ -1,0 +1,75 @@
+{
+	"moments": [
+		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Spring Break 2016:", "Puerto Rico"]}
+			],
+			"duration": 8
+		},
+		{
+			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
+			"duration": 12,
+			"sky": "sky/stars.jpg",
+			"contents": [{"type": "text", "textLines": ["Boston to", "San Juan"]}],
+			"noContentFlyUp": true
+		},
+		{
+			"sky": "scenes/airport/sky.jpg",
+			"contents": [
+				{"type": "image", "url": "scenes/airport/friends.jpg"},
+				{"type": "image", "url": "scenes/airport/stop.jpg"}
+			],
+			"caption": ["Day 1: ", "San Juan, Puerto Rico"],
+			"duration": 9
+		},
+		{
+			"sky": "scenes/beach/sky.jpg",
+			"contents": [
+				{"type": "image", "url": "scenes/beach/coconut.jpg"},
+				{"count": 118, "rows": 11, "url": "scenes/beach/beach.jpg", "framerate": 13, "type": "video", "columns": 11}
+			],
+			"caption": ["Day 1:", "San Juan Beach"],
+			"duration": 9
+		},
+		{
+			"sky": "scenes/city/sky.jpg",
+			"contents": [
+				{"type": "image", "url": "scenes/city/walk.jpg"},
+				{"type": "image", "url": "scenes/city/red.jpg"},
+				{"type": "image", "url": "scenes/city/lean.jpg"},
+				{"type": "image", "url": "scenes/city/young.jpg"},
+				{"type": "image", "url": "scenes/city/house.jpg"}
+			],
+			"caption": ["Day 2:", "Exploring the City"],
+			"duration": 9
+		},
+		{
+			"contents": [
+				{"type": "image", "url": "scenes/forest/fruit.jpg"},
+				{"count": 60, "rows": 8, "url": "scenes/forest/zipline.jpg", "framerate": 13, "type": "video", "columns": 8},
+				{"type": "image", "url": "scenes/forest/kids.jpg"}
+			],
+			"caption": ["Day 3:", "El Yunque Rainforest"],
+			"sky": "scenes/forest/sky.jpg",
+			"duration": 9
+		},
+		{
+			"contents": [
+				{"type": "image", "url": "scenes/fort/friends.jpg"},
+				{"type": "image", "url": "scenes/fort/flags.jpg"},
+				{"type": "image", "url": "scenes/fort/three.jpg"}
+			],
+			"caption": ["Day 4:", "El Castillo del Morro"],
+			"sky": "scenes/fort/sky.jpg",
+			"duration": 9
+		},
+		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["until next year..."]}
+			],
+			"duration": 6
+		}
+	]
+}

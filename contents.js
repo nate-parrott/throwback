@@ -1,27 +1,57 @@
-var Contents = function(data, angle, node, vertAngle) {
+var Contents = function(data, node, positionInfo) {
 	var self = this;
-	vertAngle = vertAngle || 0;
 	if (data.type === 'image') {
-		addImageContents(self, node, data.url, angle, vertAngle);
+		addImageContents(self, node, data, function(node){
+			positionContentObject(node, positionInfo);
+		});
 	} else if (data.type === 'text') {
-		addTextContents(self, node, data.textLines, angle, vertAngle);
+		addTextContents(self, node, data, function(node) {
+			positionContentObject(node, positionInfo);
+		});
 	} else if (data.type === 'video') {
-		addVideoContents(self, node, data.url, data.columns, data.rows, data.count, data.framerate, angle, vertAngle);
+		addVideoContents(self, node, data, function(node) {
+			positionContentObject(node, positionInfo);
+		});
 	}
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
+		
+		if (positionInfo.followLookVec) {
+			var look = LOOK_VEC;
+			positionInfo.angle = -Math.atan2(look.z, look.x) / Math.PI * 180;
+			if (self.plane) {
+				positionContentObject(self.plane, positionInfo);
+			}
+		}
 	}
 	return self;
 }
 
-function positionContentObject(obj, angle, vertAngle, random) {
+function positionContentObject(obj, positionInfo) {
+	var angle = positionInfo.angle;
+	var vertAngle = positionInfo.vertAngle;
+	var random = positionInfo.random;
+	var distance = positionInfo.distance || 85;
+	
+	obj.position.set(0,0,0);
+	obj.rotation.set(0,0,0);
+	obj.matrix.identity();
+	
  	obj.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
 	obj.rotateX(vertAngle * Math.PI / 180);
 	if (random) obj.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.03)
- 	obj.translateZ(-65);
+	
+	var distance = positionInfo.distance || 85;
+ 	obj.translateZ(-distance);
 }
 
-function addVideoContents(self, node, url, columns, rows, count, framerate, angle, vertAngle) {
+function addVideoContents(self, node, data, callback) {
+	var framerate = data.framerate;
+	var rows = data.rows;
+	var columns = data.columns;
+	var url = data.url;
+	var count = data.count;
+	
 	var loader = new THREE.TextureLoader();
 
 	// load a resource
@@ -46,13 +76,13 @@ function addVideoContents(self, node, url, columns, rows, count, framerate, angl
 		var runnerGeometry = new THREE.PlaneGeometry(size * geoWidth, size * geoHeight, 1, 1);
 		var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
 		node.add(runner);
-		positionContentObject(runner, angle, vertAngle, true);
+		callback(runner);
 	});
 }
 
-function addImageContents(self, node, url, angle, vertAngle) {
+function addImageContents(self, node, data, callback) {
+	var url = data.url;
 	var loader = new THREE.TextureLoader();
-
 	// load a resource
 	loader.load(
 		// resource URL
@@ -76,10 +106,10 @@ function addImageContents(self, node, url, angle, vertAngle) {
 		 	var geometry = new THREE.PlaneGeometry( size * geoWidth, size * geoHeight);
 		 	// var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
 		 	var plane = new THREE.Mesh( geometry, material );
-			positionContentObject(plane, angle, vertAngle, true);
 		 	node.add( plane );
 			// console.log("adding image ", url, " to ", node);
 			self.plane = plane;
+			callback(plane);
 		},
 		// Function called when download progresses
 		function ( xhr ) {
@@ -93,7 +123,8 @@ function addImageContents(self, node, url, angle, vertAngle) {
 }
 
 
-function addTextContents(self, node, textLines, angle, vertAngle) {
+function addTextContents(self, node, data, callback) {
+	var textLines = data.textLines;
 	var loader = new THREE.FontLoader();
 	getFont(function ( font ) {
 		/*var material = new THREE.MultiMaterial( [
@@ -115,10 +146,10 @@ function addTextContents(self, node, textLines, angle, vertAngle) {
 			var height = textGeo.boundingBox.max.y - textGeo.boundingBox.min.y;
 			// var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
 			var mesh = new THREE.Mesh(textGeo, material);
-			positionContentObject(mesh, angle, vertAngle, false);
+			node.add(mesh);
+			callback(mesh);
 			mesh.translateY(-(size * 1.5 * i - totalHeight/2));
 			mesh.translateX(-width/2);
-			node.add(mesh);
 		});
 	} );
 }

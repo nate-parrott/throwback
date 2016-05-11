@@ -53,18 +53,26 @@ function Moment(data, index) {
 	
 	self.contents = [];
 	if (data.contents) {
-		var angleDelta = -49;
+		var angleDelta = -29;
 		var totalAngleDelta = angleDelta * (data.contents.length - 1);
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
 			var angle = i * angleDelta + offset;
-			var c = new Contents(item, angle, self.contentGroup);
+			var c = new Contents(item, self.contentGroup, {angle: angle, vertAngle: 0, random: true});
 			self.contents.push(c);
 		})
 	}
 	
+	if (data.floatingOverlays) {
+		var dist = 85 - 10;
+		data.floatingOverlays.forEach(function(data) {
+			dist -= 10;
+			self.contents.push(new Contents(data, self.contentGroup, {angle: 0, vertAngle: 0, distance: dist, followLookVec: true}));
+		})
+	}
+	
 	if (data.caption) {
-		var cap = new Contents({type: 'text', 'textLines': data.caption}, 0, self.contentGroup, -35);
+		self.contents.push(new Contents({type: 'text', 'textLines': data.caption}, self.contentGroup,  {angle: 0, vertAngle: -35}));
 	}
 	
 	self.show = function(scene) {
