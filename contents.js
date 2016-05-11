@@ -12,6 +12,10 @@ var Contents = function(data, node, positionInfo) {
 		addVideoContents(self, node, data, function(node) {
 			positionContentObject(node, positionInfo);
 		});
+	} else if (data.type === 'obj') {
+		addObjContents(self, node, data, function(node) {
+			positionContentObject(node, positionInfo);
+		});
 	}
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
@@ -21,6 +25,8 @@ var Contents = function(data, node, positionInfo) {
 			positionInfo.angle = -Math.atan2(look.z, look.x) / Math.PI * 180;
 			if (self.plane) {
 				positionContentObject(self.plane, positionInfo);
+			} else if (self.mesh) {
+				positionContentObject(self.mesh, positionInfo);
 			}
 		}
 	}
@@ -32,9 +38,11 @@ function positionContentObject(obj, positionInfo) {
 	var vertAngle = positionInfo.vertAngle;
 	var random = positionInfo.random;
 	var distance = positionInfo.distance || 85;
+	var scale = positionInfo.scale || 1;
 	
 	obj.position.set(0,0,0);
 	obj.rotation.set(0,0,0);
+	obj.scale.set(scale,scale,scale);
 	obj.matrix.identity();
 	
  	obj.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
@@ -122,6 +130,14 @@ function addImageContents(self, node, data, callback) {
 	);
 }
 
+function addObjContents(self, node, data, callback) {
+	loadObj(data.url, data.name, function(mesh) {
+		node.add(mesh);
+		self.mesh = mesh;
+		callback(mesh);
+	})
+}
+
 
 function addTextContents(self, node, data, callback) {
 	var textLines = data.textLines;
@@ -166,3 +182,23 @@ function getFont(callback) {
 		})
 	}
 }
+
+function loadObj(url, name, callback) {
+	var mtlLoader = new THREE.MTLLoader();
+	mtlLoader.setBaseUrl(url);
+	mtlLoader.load( name + '.mtl', function( materials ) {
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials( materials );
+		objLoader.setPath(url);
+		objLoader.load( name + '.obj', function ( object ) {
+			object.traverse( function( node ) {
+			    if( node.material ) {
+			        node.material.side = THREE.DoubleSide;
+			    }
+			});
+			callback(object)
+		}, function(progress) {}, function(e) {console.error(e)} );
+	});
+}
+
