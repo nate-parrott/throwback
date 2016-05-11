@@ -256,11 +256,12 @@ function createCloseButton(parentNode, parentNodeWidth, parentNodeHeight) {
 				map: texture,
 				side: THREE.DoubleSide
 			 } );
-			var size = 5;
+			var size = 10;
 		 	var geometry = new THREE.PlaneGeometry(size, size);
 		 	// var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
 		 	var plane = new THREE.Mesh( geometry, material );
 		 	parentNode.add(plane);
+			plane.isCloseButton = true;
 			plane.position.set(-parentNodeWidth/2 + size/2, -(-parentNodeHeight/2 + size/2), 0.1);
 		},
 		// Function called when download progresses

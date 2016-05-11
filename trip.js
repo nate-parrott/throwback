@@ -11,16 +11,12 @@ function Trip(scene, data, initialLookAngle) {
 	self.visibleMoments = {};
 	self.showMomentAtIndex = function(i) {
 		var oldIndex = self.currentMomentIndex;
-		/*if (self.visibleMoments[self.currentMomentIndex]) {
-			var oldIndex = self.currentMomentIndex;
-			self.visibleMoments[oldIndex].hide();
-			delete self.visibleMoments[oldIndex]
-		}*/
 		self.currentMomentIndex = i;
 		var moment = self.getMomentAtIndex(i);
 		moment.contentGroup.rotateY(-self.lookAngle * Math.PI / 180);
 		self.visibleMoments[i] = moment;
 		moment.show(self.scene);
+		self.lookRay.visible = moment.data.rayCast;
 		
 		// create a new transition:
 		if (oldIndex !== null) {
@@ -66,6 +62,19 @@ function Trip(scene, data, initialLookAngle) {
 			}
 		}
 		
+		var lookPoint = new THREE.Vector3();
+		lookPoint.copy(LOOK_VEC);
+		lookPoint.multiplyScalar(1000);
+		self.lookRay.lookAt(lookPoint);
+		self.lookRay.rotateX(Math.PI/2);
+		
+		var currentMoment = self.visibleMoments[self.currentMomentIndex];
+		if (currentMoment.data.rayCast) {
+			self.raycaster.setFromCamera( new THREE.Vector2(0,0), camera );
+			var hitObjects = self.raycaster.intersectObjects( currentMoment.group.children, true );
+			currentMoment.rayCastHits(hitObjects);
+		}
+		
 		var keys = Object.keys(self.visibleMoments);
 		for (var i=0; i<keys.length; i++) {
 			var momentIndex = keys[i];
@@ -77,5 +86,15 @@ function Trip(scene, data, initialLookAngle) {
 			}
 		}
 	}
+	self.raycaster = new THREE.Raycaster();
+	// create the look ray:
+	var lookRayLen = 200;
+	var lookRayGeometry = new THREE.PlaneGeometry(0.5, lookRayLen);
+	var lookRayMtl = new THREE.MeshPhongMaterial( { color: 0x88ddff, shading: THREE.FlatShading, side: THREE.DoubleSide } );
+	self.lookRay = new THREE.Mesh( lookRayGeometry, lookRayMtl );
+	// self.lookRay.translateZ(lookRayLen);
+	self.lookRay.position.set(0,-3,0);
+	self.scene.add(self.lookRay);
+	
 	return self;
 }

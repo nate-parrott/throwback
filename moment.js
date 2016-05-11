@@ -138,5 +138,16 @@ function Moment(data, index) {
 		}, 2000);
 	}
 	
+	self.rayCastHits = function(hits) {
+		if (TIME - MOMENT_APPEARANCE_TIME > 1) {
+			hits.forEach(function(hit) {
+				var obj = hit.object;
+				if (obj.isCloseButton) {
+					obj.parent.parent.remove(obj.parent);
+				}
+			})
+		}
+	}
+	
 	return self;
 }

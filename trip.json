@@ -3,6 +3,7 @@
 		{
 			"sky": "scenes/popups/sky2.jpg",
 			"contentAngleSpread": 42,
+			"rayCast": true,
 			"contents": [
 				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "closeButton": true},
 				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "closeButton": true},
