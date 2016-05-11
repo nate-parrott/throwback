@@ -80,9 +80,12 @@ function positionContentObject(obj, positionInfo) {
 		distance -= (TIME - MOMENT_APPEARANCE_TIME) * 4;
 	}
 	
-	var objPos = new THREE.Vector3(distance,0,0);
-	objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
-	objPos.applyAxisAngle(new THREE.Vector3(0,1,0), angle * Math.PI / 180);
+	var objPos = positionInfo.position;
+	if (!objPos) {
+		objPos = new THREE.Vector3(distance,0,0);
+		objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
+		objPos.applyAxisAngle(new THREE.Vector3(0,1,0), angle * Math.PI / 180);
+	}
 
 	obj.matrix.identity();	
 	obj.position.copy(objPos);
