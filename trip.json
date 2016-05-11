@@ -11,9 +11,10 @@
 			],
 			"caption": ["Welcome to NEWS/ZONE", "#1 in VR news"],
 			"floatingOverlays": [
-				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2}, 
-				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5}
-			]
+				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 3}, 
+				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 3}
+			],
+			"dismissTrigger": {"minTime": 3, "gesture": "headShake"}
 		},
 		{
 			"sky": "sky/stars.jpg",

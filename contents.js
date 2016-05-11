@@ -3,6 +3,7 @@ var Contents = function(data, node, positionInfo) {
 	if (data.scale) positionInfo.scale = data.scale;
 	if (data.translate) positionInfo.translate = data.translate;
 	if (data.nod) positionInfo.nod = data.nod;
+	if (data.appearanceDelay) positionInfo.appearanceDelay = data.appearanceDelay;
 	
 	if (data.type === 'image') {
 		addImageContents(self, node, data, function(node){
@@ -24,17 +25,19 @@ var Contents = function(data, node, positionInfo) {
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
 		
+		var shouldReposition = false
 		if (positionInfo.followLookVec) {
 			var look = LOOK_VEC;
 			positionInfo.angle = -Math.atan2(look.z, look.x) / Math.PI * 180;
+			shouldReposition = true
+		}
+		if (positionInfo.nod || positionInfo.appearanceDelay) {
+			shouldReposition = true
+		}
+		if (shouldReposition) {
 			if (self.plane) {
 				positionContentObject(self.plane, positionInfo);
 			} else if (self.mesh) {
-				positionContentObject(self.mesh, positionInfo);
-			}
-		}
-		if (positionInfo.nod) {
-			if (self.mesh) {
 				positionContentObject(self.mesh, positionInfo);
 			}
 		}
@@ -48,6 +51,13 @@ function positionContentObject(obj, positionInfo) {
 	var random = positionInfo.random || false;
 	var distance = positionInfo.distance || 85;
 	var scale = positionInfo.scale || 1;
+	
+	if (positionInfo.appearanceDelay) {
+		var time = (TIME - MOMENT_APPEARANCE_TIME - positionInfo.appearanceDelay) / 0.5;
+		time = Math.min(1, Math.max(0, time));
+		scale *= easeInOut(time);
+	}
+	if (scale == 0) scale = 0.001;
 	
 	var objPos = new THREE.Vector3(distance,0,0);
 	objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);

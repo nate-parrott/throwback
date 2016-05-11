@@ -21,7 +21,9 @@ function Moment(data, index) {
 	self.index = index;
 	self.data = data;
 	self.gestureDetector = new GestureDetector(function(gestureName) {
-		console.log('GESTURE:', gestureName);
+		if (data.dismissTrigger && data.dismissTrigger.gesture === gestureName && TIME - MOMENT_APPEARANCE_TIME > (data.dismissTrigger.minTime || 0)) {
+			self.done = true;
+		}
 	})
 	
 	if (data.sky) {
