@@ -12,9 +12,9 @@ MOMENT_APPEARANCE_TIME = 0;
 
 function Moment(data, index) {
 	var self = this;
-	
+
 	MOMENT_APPEARANCE_TIME = TIME;
-	
+
 	self.group = new THREE.Group();
 	self.contentGroup = new THREE.Group();
 	self.contentGroup.name = 'ContentGroup' + index;
@@ -29,7 +29,8 @@ function Moment(data, index) {
 			self[data.gestures[gestureName]]();
 		}
 	})
-	
+  self.lastRandomPlaceTime = 0;
+
 	if (data.sky) {
         var material = new THREE.MeshBasicMaterial({
             map: THREE.ImageUtils.loadTexture(data.sky),
@@ -41,7 +42,7 @@ function Moment(data, index) {
         self.group.add(sky);
 		self.sky = sky;
 	}
-	
+
 	if (data.flight) {
 		var radius = 200;
 		var segments = 70;
@@ -52,16 +53,16 @@ function Moment(data, index) {
 					// bumpMap:     THREE.ImageUtils.loadTexture('assets/elev_bump_4k.jpg'),
 					// bumpScale:   0.005,
 					// specularMap: THREE.ImageUtils.loadTexture('assets/water_4k.png'),
-					// specular:    new THREE.Color('grey')								
+					// specular:    new THREE.Color('grey')
 				})
 		);
 		globe.renderOrder = 2;
 		self.contentGroup.add(globe);
 		self.globe = globe;
 	}
-	
+
 	self.contents = [];
-	if (data.contents) {
+	if (data.contents && data.placeContents != "random") {
 		var angleDelta = -(data.contentAngleSpread || 29);
 		var totalAngleDelta = angleDelta * (data.contents.length - 1);
 		var offset = -totalAngleDelta/2;
@@ -71,7 +72,7 @@ function Moment(data, index) {
 			self.contents.push(c);
 		})
 	}
-	
+
 	self.overlays = [];
 	if (data.floatingOverlays) {
 		var dist = 85 - 10;
@@ -82,23 +83,23 @@ function Moment(data, index) {
 			self.overlays.push(c);
 		})
 	}
-	
+
 	if (data.caption) {
 		self.contents.push(new Contents({type: 'text', 'textLines': data.caption}, self.contentGroup,  {angle: 0, vertAngle: -35}));
 	}
-	
+
 	self.show = function(scene) {
 		self.scene = scene;
 		self.scene.add(self.group)
 		self.elapsed = 0;
 		self.done = false;
 	}
-	
+
 	self.hide = function() {
 		self.scene.remove(self.group);
 		self.scene = null;
 	}
-	
+
 	self.elapsed = 0;
 	self.tick = function(dt) {
 		// return true if we're done here
@@ -122,9 +123,12 @@ function Moment(data, index) {
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;
 			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
 		}
+    if (data.placeContents == "random") {
+      self.placeImageInView()
+    }
 		return self.done;
 	}
-	
+
 	// gesture actions:
 	self.dismissOverlaysAndFinish = function() {
 		self.overlays.forEach(function(o) {
@@ -136,7 +140,7 @@ function Moment(data, index) {
 			self.done = true;
 		}, 2000);
 	}
-	
+
 	self.rayCastHits = function(hits) {
 		if (TIME - MOMENT_APPEARANCE_TIME > 1) {
 			hits.forEach(function(hit) {
@@ -147,6 +151,29 @@ function Moment(data, index) {
 			})
 		}
 	}
-	
+
+  self.placeImageInView = function() {
+    currentTime = Math.floor(TIME);
+    console.log(currentTime, self.lastRandomPlaceTime);
+
+    // See if enough time has passed since last place
+    if (currentTime - self.lastRandomPlaceTime >= 1) {
+      return
+    } else {
+      self.lastRandomPlaceTime = currentTime
+    }
+
+    // Detect where user is looking
+    var look = LOOK_VEC;
+    var pos = look.multiplyScalar(Math.floor(Math.random() * 5.0 + 1.0))
+
+    // Create Content object
+    var contentImages = data.contents.filter(function(v) { return v.type == "image"; });
+    var randomImage = contentImages[Math.floor(Math.random() * contentImages.length)];
+    var c = new Contents(randomImage, self.contentGroup, {position: pos});
+
+    self.contents.push(c);
+  }
+
 	return self;
 }

@@ -1,6 +1,15 @@
 {
 	"moments": [
 		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["gif-party"]},
+				{"type": "image", "url": "scenes/gif-party/cat.jpg"}
+			],
+			"placeContents": "random",
+			"duration": 20
+		},
+		{
 			"sky": "scenes/popups/sky2.jpg",
 			"contentAngleSpread": 42,
 			"rayCast": true,
@@ -28,7 +37,7 @@
 			],
 			"caption": ["Welcome to NEWS/ZONE", "#1 in VR news"],
 			"floatingOverlays": [
-				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 7}, 
+				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 7},
 				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 8}
 			],
 			"gestures": {"headShake": "dismissOverlaysAndFinish"},
