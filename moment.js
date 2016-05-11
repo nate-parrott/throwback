@@ -20,6 +20,9 @@ function Moment(data, index) {
 	self.group.name = "Moment " + _momentIdx++;
 	self.index = index;
 	self.data = data;
+	self.gestureDetector = new GestureDetector(function(gestureName) {
+		console.log('GESTURE:', gestureName);
+	})
 	
 	if (data.sky) {
         var material = new THREE.MeshBasicMaterial({
@@ -91,6 +94,7 @@ function Moment(data, index) {
 	self.tick = function(dt) {
 		// return true if we're done here
 		self.elapsed += dt;
+		self.gestureDetector.update(TIME, LOOK_VEC);
 		self.contents.forEach(function(item) {
 			item.tick(dt);
 		})
