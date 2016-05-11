@@ -16,7 +16,7 @@ function Trip(scene, data, initialLookAngle) {
 		moment.contentGroup.rotateY(-self.lookAngle * Math.PI / 180);
 		self.visibleMoments[i] = moment;
 		moment.show(self.scene);
-		self.lookRay.visible = moment.data.rayCast;
+		self.lookRay.visible = !!moment.data.rayCast;
 		
 		// create a new transition:
 		if (oldIndex !== null) {

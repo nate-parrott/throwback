@@ -1,6 +1,13 @@
 {
 	"moments": [
 		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Control hijacking"]}
+			],
+			"caption": ["TODO"]
+		},
+		{
 			"sky": "scenes/popups/sky2.jpg",
 			"contentAngleSpread": 42,
 			"rayCast": true,
@@ -46,13 +53,6 @@
 			"contents": [
 				{"type": "text", "textLines": ["Junk VR 2020"]}
 			]
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Control hijacking"]}
-			],
-			"caption": ["TODO"]
 		},
 		{
 			"sky": "sky/stars.jpg",
