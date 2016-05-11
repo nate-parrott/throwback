@@ -29,6 +29,7 @@ function Moment(data, index) {
 			self[data.gestures[gestureName]]();
 		}
 	})
+  self.numRandomPlacedGifs = 0;
   self.lastRandomPlaceTime = 0;
 
 	if (data.sky) {
@@ -154,15 +155,16 @@ function Moment(data, index) {
 
   self.placeImageInView = function() {
     // See if enough time has passed since last place
-    if (TIME - self.lastRandomPlaceTime <= 0.1) {
+    if (TIME - self.lastRandomPlaceTime <= 0.1 || self.numRandomPlacedGifs >= 100) {
       return
     } else {
-      self.lastRandomPlaceTime = TIME
+      self.lastRandomPlaceTime = TIME;
+      self.numRandomPlacedGifs += 1;
     }
 
     // Detect where user is looking
     var look = LOOK_VEC;
-    var pos = look.multiplyScalar(Math.floor(Math.random() * 300.0 + 75.0))
+    var pos = look.multiplyScalar(Math.floor(Math.random() * 200.0 + 50.0))
     console.log(pos, pos.length())
 
     // Create Content object
