@@ -154,6 +154,9 @@ function addImageContents(self, node, data, callback) {
 		 	node.add( plane );
 			// console.log("adding image ", url, " to ", node);
 			self.plane = plane;
+			if (data.closeButton) {
+				createCloseButton(plane, size * geoWidth, size * geoHeight);
+			}
 			callback(plane);
 		},
 		// Function called when download progresses
@@ -238,5 +241,36 @@ function loadObj(url, name, callback) {
 			callback(object)
 		}, function(progress) {}, function(e) {console.error(e)} );
 	});
+}
+
+function createCloseButton(parentNode, parentNodeWidth, parentNodeHeight) {
+	var loader = new THREE.TextureLoader();
+	// load a resource
+	loader.load(
+		// resource URL
+		"static/x.png",
+		// Function when resource is loaded
+		function ( texture ) {
+			// do something with the texture
+			var material = new THREE.MeshBasicMaterial( {
+				map: texture,
+				side: THREE.DoubleSide
+			 } );
+			var size = 5;
+		 	var geometry = new THREE.PlaneGeometry(size, size);
+		 	// var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+		 	var plane = new THREE.Mesh( geometry, material );
+		 	parentNode.add(plane);
+			plane.position.set(-parentNodeWidth/2 + size/2, -(-parentNodeHeight/2 + size/2), 0.1);
+		},
+		// Function called when download progresses
+		function ( xhr ) {
+			
+		},
+		// Function called when download errors
+		function ( xhr ) {
+			console.log('error loading ', url);
+		}
+	);
 }
 
