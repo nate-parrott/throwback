@@ -14,7 +14,7 @@
 				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 7}, 
 				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 8}
 			],
-			"dismissTrigger": {"minTime": 7, "gesture": "headShake"},
+			"gestures": {"headShake": "dismissOverlaysAndFinish"},
 			"duration": 20
 		},
 		{

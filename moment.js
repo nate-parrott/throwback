@@ -22,9 +22,11 @@ function Moment(data, index) {
 	self.group.name = "Moment " + index;
 	self.index = index;
 	self.data = data;
+	self._usedGestures = {};
 	self.gestureDetector = new GestureDetector(function(gestureName) {
-		if (data.dismissTrigger && data.dismissTrigger.gesture === gestureName && TIME - MOMENT_APPEARANCE_TIME > (data.dismissTrigger.minTime || 0)) {
-			self.done = true;
+		if (data.gestures && data.gestures[gestureName] && !self._usedGestures[gestureName]) {
+			self._usedGestures[gestureName] = true;
+			self[data.gestures[gestureName]]();
 		}
 	})
 	
@@ -70,11 +72,14 @@ function Moment(data, index) {
 		})
 	}
 	
+	self.overlays = [];
 	if (data.floatingOverlays) {
 		var dist = 85 - 10;
 		data.floatingOverlays.forEach(function(data) {
 			dist -= 10;
-			self.contents.push(new Contents(data, self.contentGroup, {angle: 0, vertAngle: 0, distance: dist, followLookVec: true}));
+			var c = new Contents(data, self.contentGroup, {angle: 0, vertAngle: 0, distance: dist, followLookVec: true})
+			self.contents.push(c);
+			self.overlays.push(c);
 		})
 	}
 	
@@ -118,6 +123,19 @@ function Moment(data, index) {
 			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
 		}
 		return self.done;
+	}
+	
+	// gesture actions:
+	self.dismissOverlaysAndFinish = function() {
+		console.log('DISMISS')
+		self.overlays.forEach(function(o) {
+			console.log(o)
+			if (o.mesh) o.mesh.parent.remove(o.mesh);
+			if (o.plane) o.plane.parent.remove(o.plane)
+		})
+		setTimeout(function() {
+			self.done = true;
+		}, 2000);
 	}
 	
 	return self;
