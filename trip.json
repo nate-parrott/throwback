@@ -1,6 +1,13 @@
 {
 	"moments": [
 		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Junk VR 2020"]}
+			],
+			"duration": 3
+		},
+		{
 			"sky": "scenes/newsletter/sky.jpg",
 			"contents": [
 				{"type": "image", "url": "scenes/newsletter/story2.png"},
