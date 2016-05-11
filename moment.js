@@ -153,24 +153,23 @@ function Moment(data, index) {
 	}
 
   self.placeImageInView = function() {
-    currentTime = Math.floor(TIME);
-    console.log(currentTime, self.lastRandomPlaceTime);
-
     // See if enough time has passed since last place
-    if (currentTime - self.lastRandomPlaceTime >= 1) {
+    if (TIME - self.lastRandomPlaceTime <= 0.1) {
       return
     } else {
-      self.lastRandomPlaceTime = currentTime
+      self.lastRandomPlaceTime = TIME
     }
 
     // Detect where user is looking
     var look = LOOK_VEC;
-    var pos = look.multiplyScalar(Math.floor(Math.random() * 5.0 + 1.0))
+    var pos = look.multiplyScalar(Math.floor(Math.random() * 300.0 + 75.0))
+    console.log(pos, pos.length())
 
     // Create Content object
-    var contentImages = data.contents.filter(function(v) { return v.type == "image"; });
-    var randomImage = contentImages[Math.floor(Math.random() * contentImages.length)];
-    var c = new Contents(randomImage, self.contentGroup, {position: pos});
+    var contentMedia = data.contents.filter(function(v) { return v.type == "image" || v.type == "video"; });
+    var randomMedia = contentMedia[Math.floor(Math.random() * contentMedia.length)];
+    randomMedia.steadilyAdvancing = true;
+    var c = new Contents(randomMedia, self.contentGroup, {position: pos});
 
     self.contents.push(c);
   }

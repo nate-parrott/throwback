@@ -4,7 +4,8 @@
 			"sky": "sky/stars.jpg",
 			"contents": [
 				{"type": "text", "textLines": ["gif-party"]},
-				{"type": "image", "url": "scenes/gif-party/cat.jpg"}
+				{"type": "image", "url": "scenes/gif-party/cat.jpg"},
+				{"count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5}
 			],
 			"placeContents": "random",
 			"duration": 20
