@@ -1,4 +1,3 @@
-MOMENT_APPEARANCE_TIME = 0;
 
 function Trip(scene, data, initialLookAngle) {
 	var self = this;
@@ -56,7 +55,6 @@ function Trip(scene, data, initialLookAngle) {
 		}
 	}
 	self.start = function() {
-		MOMENT_APPEARANCE_TIME = TIME;
 		self.showMomentAtIndex(0);
 	}
 	self.tick = function(dt) {

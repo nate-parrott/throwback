@@ -1,13 +1,6 @@
 {
 	"moments": [
 		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Junk VR 2020"]}
-			],
-			"duration": 3
-		},
-		{
 			"sky": "scenes/newsletter/sky.jpg",
 			"contents": [
 				{"type": "image", "url": "scenes/newsletter/story2.png"},
@@ -18,23 +11,40 @@
 			],
 			"caption": ["Welcome to NEWS/ZONE", "#1 in VR news"],
 			"floatingOverlays": [
-				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 3}, 
-				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 3}
+				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 7}, 
+				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 8}
 			],
-			"dismissTrigger": {"minTime": 3, "gesture": "headShake"}
+			"dismissTrigger": {"minTime": 7, "gesture": "headShake"},
+			"duration": 20
+		},
+		{
+			"sky": "scenes/popups/sky2.jpg",
+			"contentAngleSpread": 42,
+			"contents": [
+				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "appearanceDelay": 5},
+				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "appearanceDelay": 8},
+				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "appearanceDelay": 5.5},
+				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "appearanceDelay": 7.5},
+				{"type": "image", "url": "scenes/popups/ad5.png", "random": true, "appearanceDelay": 6},
+				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "appearanceDelay": 8},
+				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "appearanceDelay": 4.5},
+				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "appearanceDelay": 5},
+				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "appearanceDelay": 7}
+			],
+			"duration": 20
+		},
+		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Junk VR 2020"]}
+			],
+			"duration": 3
 		},
 		{
 			"sky": "sky/stars.jpg",
 			"contents": [
 				{"type": "text", "textLines": ["Junk VR 2020"]}
 			]
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Pop-up ads"]}
-			],
-			"caption": ["TODO"]
 		},
 		{
 			"sky": "sky/stars.jpg",
@@ -47,6 +57,13 @@
 			"sky": "sky/stars.jpg",
 			"contents": [
 				{"type": "text", "textLines": ["overload"]}
+			],
+			"caption": ["TODO"]
+		},
+		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["world melting"]}
 			],
 			"caption": ["TODO"]
 		}

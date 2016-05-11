@@ -8,16 +8,18 @@ transition objects look like this:
 
 */
 
-var _momentIdx = 0;
+MOMENT_APPEARANCE_TIME = 0;
 
 function Moment(data, index) {
 	var self = this;
+	
+	MOMENT_APPEARANCE_TIME = TIME;
 	
 	self.group = new THREE.Group();
 	self.contentGroup = new THREE.Group();
 	self.contentGroup.name = 'ContentGroup' + index;
 	self.group.add(self.contentGroup);
-	self.group.name = "Moment " + _momentIdx++;
+	self.group.name = "Moment " + index;
 	self.index = index;
 	self.data = data;
 	self.gestureDetector = new GestureDetector(function(gestureName) {
@@ -58,12 +60,12 @@ function Moment(data, index) {
 	
 	self.contents = [];
 	if (data.contents) {
-		var angleDelta = -29;
+		var angleDelta = -(data.contentAngleSpread || 29);
 		var totalAngleDelta = angleDelta * (data.contents.length - 1);
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
 			var angle = i * angleDelta + offset;
-			var c = new Contents(item, self.contentGroup, {angle: angle, vertAngle: 0, random: true});
+			var c = new Contents(item, self.contentGroup, {angle: angle, vertAngle: 0, random: false});
 			self.contents.push(c);
 		})
 	}

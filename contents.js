@@ -4,6 +4,7 @@ var Contents = function(data, node, positionInfo) {
 	if (data.translate) positionInfo.translate = data.translate;
 	if (data.nod) positionInfo.nod = data.nod;
 	if (data.appearanceDelay) positionInfo.appearanceDelay = data.appearanceDelay;
+	if (data.random) positionInfo.random = data.random;
 	
 	if (data.type === 'image') {
 		addImageContents(self, node, data, function(node){
@@ -48,6 +49,7 @@ var Contents = function(data, node, positionInfo) {
 function positionContentObject(obj, positionInfo) {
 	var angle = positionInfo.angle || 0;
 	var vertAngle = positionInfo.vertAngle || 0;
+	var spinRotation = 0;
 	var random = positionInfo.random || false;
 	var distance = positionInfo.distance || 85;
 	var scale = positionInfo.scale || 1;
@@ -58,6 +60,15 @@ function positionContentObject(obj, positionInfo) {
 		scale *= easeInOut(time);
 	}
 	if (scale == 0) scale = 0.001;
+	
+	if (random) {
+		if (!positionInfo._rand) {
+			positionInfo._rand = {v: (Math.random() * 2 - 1) * 20, a: (Math.random() * 2 - 1) * 20, s: (Math.random() * 2 - 1) * 0.2};
+		}
+		vertAngle += positionInfo._rand.v;
+		angle += positionInfo._rand.a;
+		scale += positionInfo._rand.s;
+	}
 	
 	var objPos = new THREE.Vector3(distance,0,0);
 	objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
