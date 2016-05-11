@@ -1,5 +1,9 @@
 var Contents = function(data, node, positionInfo) {
 	var self = this;
+	if (data.scale) positionInfo.scale = data.scale;
+	if (data.translate) positionInfo.translate = data.translate;
+	if (data.nod) positionInfo.nod = data.nod;
+	
 	if (data.type === 'image') {
 		addImageContents(self, node, data, function(node){
 			positionContentObject(node, positionInfo);
@@ -29,28 +33,40 @@ var Contents = function(data, node, positionInfo) {
 				positionContentObject(self.mesh, positionInfo);
 			}
 		}
+		if (positionInfo.nod) {
+			if (self.mesh) {
+				positionContentObject(self.mesh, positionInfo);
+			}
+		}
 	}
 	return self;
 }
 
 function positionContentObject(obj, positionInfo) {
-	var angle = positionInfo.angle;
-	var vertAngle = positionInfo.vertAngle;
-	var random = positionInfo.random;
+	var angle = positionInfo.angle || 0;
+	var vertAngle = positionInfo.vertAngle || 0;
+	var random = positionInfo.random || false;
 	var distance = positionInfo.distance || 85;
 	var scale = positionInfo.scale || 1;
 	
-	obj.position.set(0,0,0);
-	obj.rotation.set(0,0,0);
+	var objPos = new THREE.Vector3(distance,0,0);
+	objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
+	objPos.applyAxisAngle(new THREE.Vector3(0,1,0), angle * Math.PI / 180);
+
+	obj.matrix.identity();	
+	obj.position.copy(objPos);
+	obj.lookAt(new THREE.Vector3(0,0,0));
+	if (positionInfo.nod) {
+		var t = Math.sin(TIME * positionInfo.nod);
+		obj.rotateY(t * Math.PI * 2 * 0.1);
+	}
 	obj.scale.set(scale,scale,scale);
-	obj.matrix.identity();
 	
- 	obj.rotateY((angle + 180) * Math.PI / 180 + Math.PI/2);
-	obj.rotateX(vertAngle * Math.PI / 180);
-	if (random) obj.rotateZ((Math.random() - 0.5) * 2 * Math.PI * 2 * 0.03)
-	
-	var distance = positionInfo.distance || 85;
- 	obj.translateZ(-distance);
+	if (positionInfo.translate) {
+		obj.translateX(positionInfo.translate[0])
+		obj.translateY(positionInfo.translate[1]);
+		obj.translateZ(positionInfo.translate[2]);
+	}
 }
 
 function addVideoContents(self, node, data, callback) {
@@ -185,12 +201,13 @@ function getFont(callback) {
 
 function loadObj(url, name, callback) {
 	var mtlLoader = new THREE.MTLLoader();
-	mtlLoader.setBaseUrl(url);
+	mtlLoader.setBaseUrl(url + '/');
+	mtlLoader.setPath(url + '/');
 	mtlLoader.load( name + '.mtl', function( materials ) {
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath(url);
+		objLoader.setPath(url + '/');
 		objLoader.load( name + '.obj', function ( object ) {
 			object.traverse( function( node ) {
 			    if( node.material ) {

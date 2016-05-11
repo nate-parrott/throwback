@@ -1,6 +1,9 @@
 var AUTOSTART = false;
 
 var LOOK_VEC = new THREE.Vector3(0,0,-1);
+var TIME = 0;
+
+Math.fmod = function (a,b) { return Number((a - (Math.floor(a / b) * b)).toPrecision(8)); };
 
 var camera, scene, renderer, model;
 var effect, controls;
@@ -99,6 +102,8 @@ function resize() {
 
 _lookAngle = 0;
 function update(dt) {
+	TIME += dt;
+	
 	resize();
 
 	camera.updateProjectionMatrix();
