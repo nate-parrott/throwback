@@ -36,7 +36,7 @@ function Moment(data, index) {
             side: THREE.DoubleSide,
 			depthWrite: false
         });
-        var sky = new THREE.Mesh(new THREE.SphereGeometry(500, 30, 30), material);
+        var sky = new THREE.Mesh(new THREE.SphereGeometry(1000, 30, 30), material);
 		sky.renderOrder = -1000 - index;
         self.group.add(sky);
 		self.sky = sky;
@@ -68,6 +68,13 @@ function Moment(data, index) {
 		data.contents.forEach(function(item, i) {
 			var angle = i * angleDelta + offset;
 			var c = new Contents(item, self.contentGroup, {angle: angle, vertAngle: 0, random: false});
+			self.contents.push(c);
+		})
+	}
+	
+	if (data.sceneContents) {
+		data.sceneContents.forEach(function(d) {
+			var c = new Contents(d, self.contentGroup, {position: new THREE.Vector3(0,0,0), translate: [0,-1,0]});
 			self.contents.push(c);
 		})
 	}
@@ -109,7 +116,7 @@ function Moment(data, index) {
 		})
 		if (data.duration && self.elapsed >= data.duration && !self.done) {
 			self.done = true;
-		}
+		}		
 		if (data.flight) {
 			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
 			var toQ = quaternionFromLatLng(data.flight.to[0], data.flight.to[1]);
@@ -121,6 +128,10 @@ function Moment(data, index) {
 			self.globe.quaternion.copy(fromQ);
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;
 			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
+		}
+		if (data.path && data.duration) {
+			var p = - (TIME - MOMENT_APPEARANCE_TIME) / data.duration;
+			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
 		}
 		return self.done;
 	}

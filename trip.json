@@ -1,11 +1,11 @@
 {
 	"moments": [
 		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Control hijacking"]}
-			],
-			"caption": ["TODO"]
+			"sky": "scenes/controls/sky.png",
+			"contents": [],
+			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone"}],
+			"path": [500,0,0],
+			"duration": 14
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",
