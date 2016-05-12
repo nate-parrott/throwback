@@ -1,14 +1,11 @@
 {
 	"moments": [
 		{
-			"sky": "scenes/controls/sky.png",
-			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
-			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,-1,0]}],
-			"path": [500,0,0],
-			"pathTime": 18,
-			"breakdownAtTime": 20,
-			"duration": 30,
-			"turbulence": true
+			"sky": "scenes/cover/sky.jpg",
+			"contents": [
+				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1000]}
+			],
+			"duration": 7
 		},
 		{
 			"flight": {"from": [19.0760, 72.8777], "to":  [41, -73.7]},
@@ -81,11 +78,14 @@
 			"duration": 20
 		},
 		{
-			"sky": "scenes/cover/sky.jpg",
-			"contents": [
-				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1000]}
-			],
-			"duration": 7
+			"sky": "scenes/controls/sky.png",
+			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
+			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,-1,0]}],
+			"path": [500,0,0],
+			"pathTime": 18,
+			"breakdownAtTime": 20,
+			"duration": 30,
+			"turbulence": true
 		}
 	]
 }
