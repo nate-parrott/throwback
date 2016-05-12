@@ -7,7 +7,7 @@ function Transition(prevMoment, nextMoment, completion, options) {
 	var self = this;
 	self.completion = completion;
 	self.type = options.type || 'fade';
-	self.duration = options.duration || 1;
+	self.duration = options.duration || 0.5;
 	self.elapsed = 0;
 	self.prevMoment = prevMoment;
 	self.nextMoment = nextMoment;

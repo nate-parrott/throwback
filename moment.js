@@ -183,7 +183,7 @@ function Moment(data, index) {
 
   self.placeImageInView = function() {
     // See if enough time has passed since last place
-    if (TIME - self.lastRandomPlaceTime <= 0.1 || self.numRandomPlacedGifs >= 100) {
+    if (TIME - self.lastRandomPlaceTime <= 0.5 || self.numRandomPlacedGifs >= 20 || (TIME-MOMENT_APPEARANCE_TIME) < 3) {
       return
     } else {
       self.lastRandomPlaceTime = TIME;
