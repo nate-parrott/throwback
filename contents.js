@@ -42,6 +42,8 @@ var Contents = function(data, node, positionInfo) {
 				positionContentObject(self.plane, positionInfo);
 			} else if (self.mesh) {
 				positionContentObject(self.mesh, positionInfo);
+			} else if (self.group) {
+				positionContentObject(self.group, positionInfo);
 			}
 		}
 	}
@@ -85,6 +87,20 @@ function positionContentObject(obj, positionInfo) {
 		objPos = new THREE.Vector3(distance,0,0);
 		objPos.applyAxisAngle(new THREE.Vector3(0,0,1), vertAngle * Math.PI / 180);
 		objPos.applyAxisAngle(new THREE.Vector3(0,1,0), angle * Math.PI / 180);
+	}
+	
+	if (positionInfo.isFlyingComment) {
+		var dist = 55;
+		if (!positionInfo._timeOffset) positionInfo._timeOffset = Math.random();
+		var y = (Math.fmod(TIME / 2 + positionInfo._timeOffset, 1) * 2 - 1) * dist;
+		var alpha = 2 * (1 - Math.abs(y - dist));
+		// setObjectOpacity(obj, alpha);
+		objPos.y += y;
+		if (!positionInfo._commentOffset) {
+			positionInfo._commentOffset = {x: (Math.random() * 2 - 1) * 50, z: (Math.random() * 2 - 1) * 50};
+		}
+		objPos.z += positionInfo._commentOffset.z;
+		objPos.x += positionInfo._commentOffset.x;
 	}
 
 	obj.matrix.identity();	
@@ -204,6 +220,8 @@ function addTextContents(self, node, data, callback) {
 		var material = new THREE.MeshPhongMaterial( { color: 0xffffff, shading: THREE.FlatShading } ); // front
 		var size = 4.5;
 		var totalHeight = size * 1.5 * textLines.length;
+		var group = new THREE.Group();
+		self.group = group;
 		textLines.forEach(function(text, i) {
 			var textGeo = new THREE.TextGeometry(text, {
 								font: font,
@@ -216,11 +234,12 @@ function addTextContents(self, node, data, callback) {
 			var height = textGeo.boundingBox.max.y - textGeo.boundingBox.min.y;
 			// var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
 			var mesh = new THREE.Mesh(textGeo, material);
-			node.add(mesh);
-			callback(mesh);
+			group.add(mesh);
 			mesh.translateY(-(size * 1.5 * i - totalHeight/2));
 			mesh.translateX(-width/2);
 		});
+		node.add(group)
+		callback(group)
 	} );
 }
 

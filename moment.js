@@ -120,12 +120,12 @@ function Moment(data, index) {
 		})
 		if (data.duration && self.elapsed >= data.duration && !self.done) {
 			self.done = true;
-		}		
+		}
 		if (data.flight) {
 			var fromQ = quaternionFromLatLng(data.flight.from[0], data.flight.from[1]);
 			var toQ = quaternionFromLatLng(data.flight.to[0], data.flight.to[1]);
 			var duration = data.duration;
-			var initialFlightDelay = 0.25;
+			var initialFlightDelay = 0.1;
 			var p = Math.max(0, (self.elapsed/duration - initialFlightDelay) / (1 - initialFlightDelay));
 			var progress = easeInOut(p);
 			fromQ.slerp(toQ, progress);
@@ -169,6 +169,15 @@ function Moment(data, index) {
 				}
 			})
 		}
+	}
+	
+	// comments:
+	if (data.comments) {
+		data.comments.forEach(function(comment) {
+			var appearanceDelay = Math.random() * 10 + 0.5;
+			var c = new Contents({"type": "text", "textLines": comment.split('/'), "appearanceDelay": appearanceDelay}, self.contentGroup, {followLookVec: true, scatterRandom: true, isFlyingComment: true, scale: 0.6})
+			self.contents.push(c);
+		})
 	}
 
   self.placeImageInView = function() {

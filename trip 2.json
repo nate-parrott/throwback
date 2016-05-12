@@ -8,7 +8,7 @@
 			"duration": 8
 		},
 		{
-			"flight": {"from": [41, -73.7], "to": [18.56, -66]},
+			"flight": {"from": [18.56, -66] , "to": [41, -73.7]},
 			"duration": 12,
 			"sky": "sky/stars.jpg",
 			"contents": [{"type": "text", "textLines": ["Boston to", "San Juan"]}],
