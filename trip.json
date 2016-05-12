@@ -31,15 +31,15 @@
 			"contentAngleSpread": 42,
 			"rayCast": true,
 			"contents": [
-				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 8, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5.5, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7.5, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad5.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 6, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 8, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 4.5, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5, "closeButton": true},
-				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -30], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7, "closeButton": true}
+				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 8, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5.5, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7.5, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad5.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 6, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad3.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 8, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad1.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 4.5, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5, "closeButton": true},
+				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7, "closeButton": true}
 			],
 			"duration": 20
 		},
@@ -48,8 +48,7 @@
 			"contents": [{"type": "text", "textLines": ["TRY TO LOOK AROUND"]}],
 			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
 			"path": [500,0,0],
-			"duration": 14,
-			"glitchyControls": true
+			"duration": 14
 		},
 		{
 			"sky": "scenes/newsletter/sky.jpg",
