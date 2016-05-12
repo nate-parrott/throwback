@@ -10,18 +10,6 @@ transition objects look like this:
 
 MOMENT_APPEARANCE_TIME = 0;
 
-function quaternionBetweenVectors(v1, v2) {
-	var q = new THREE.Quaternion();
-	q.setFromUnitVectors(v1, v2);
-	return q;
-}
-
-function concatQuaternions(q1, q2) {
-	var q = new THREE.Quaternion();
-	q.multiplyQuaternions(q1, q2);
-	return q;
-}
-
 function Moment(data, index) {
 	var self = this;
 

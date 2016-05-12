@@ -59,3 +59,16 @@ function _setObjectOpacityIndividual(obj, opacity) {
 		}
 	}
 }
+
+function quaternionBetweenVectors(v1, v2) {
+	var q = new THREE.Quaternion();
+	q.setFromUnitVectors(v1, v2);
+	return q;
+}
+
+function concatQuaternions(q1, q2) {
+	var q = new THREE.Quaternion();
+	q.multiplyQuaternions(q1, q2);
+	return q;
+}
+
