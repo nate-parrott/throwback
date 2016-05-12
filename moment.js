@@ -13,8 +13,6 @@ MOMENT_APPEARANCE_TIME = 0;
 function Moment(data, index) {
 	var self = this;
 
-	MOMENT_APPEARANCE_TIME = TIME;
-
 	self.group = new THREE.Group();
 	self.contentGroup = new THREE.Group();
 	self.contentGroup.name = 'ContentGroup' + index;
@@ -99,6 +97,7 @@ function Moment(data, index) {
 	}
 
 	self.show = function(scene) {
+		MOMENT_APPEARANCE_TIME = TIME;
 		self.scene = scene;
 		self.scene.add(self.group)
 		self.elapsed = 0;
@@ -139,7 +138,7 @@ function Moment(data, index) {
 			p = -p;
 			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
 		}
-		if (data.breakdownAtTime && TIME - MOMENT_APPEARANCE_TIME > data.breakdownAtTime && self.group.parent) {
+		if (data.breakdownAtTime && self.elapsed > data.breakdownAtTime && self.group.parent) {
 			if (!self._breakdownYet) {
 				self._breakdownYet = true;
 				function showRandomSquare() {

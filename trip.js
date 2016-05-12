@@ -13,21 +13,34 @@ function Trip(scene, data, initialLookAngle) {
 		var oldIndex = self.currentMomentIndex;
 		self.currentMomentIndex = i;
 		var moment = self.getMomentAtIndex(i);
-		moment.contentCarousel.rotateY(-self.lookAngle * Math.PI / 180);
 		self.visibleMoments[i] = moment;
-		moment.show(self.scene);
 		self.lookRay.visible = !!moment.data.rayCast;
 		
-		// create a new transition:
-		if (oldIndex !== null) {
-			if (self.currentTransition) self.currentTransition.completion();
-			var prevMoment = self.visibleMoments[oldIndex];
-			var completion = function() {
+		var transition = false;
+		if (transition) {
+			moment.show(self.scene);
+			// create a new transition:
+			if (oldIndex !== null) {
+				if (self.currentTransition) self.currentTransition.completion();
+				var prevMoment = self.visibleMoments[oldIndex];
+				var completion = function() {
+					prevMoment.hide();
+					delete self.visibleMoments[oldIndex];
+				}
+				self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 2});
+				self.currentTransition.tick(0);
+			}
+		} else {
+			if (oldIndex !== null) {
+				var prevMoment = self.visibleMoments[oldIndex];
 				prevMoment.hide();
 				delete self.visibleMoments[oldIndex];
 			}
-			self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 2});
-			self.currentTransition.tick(0);
+			setTimeout(function() {
+				moment.show(self.scene);
+				moment.tick(0);
+				moment.contentCarousel.rotateY(-self.lookAngle * Math.PI / 180);	
+			}, 100);
 		}
 		self.ensurePreload();
 	}
