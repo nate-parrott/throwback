@@ -143,7 +143,6 @@ function Moment(data, index) {
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;
 			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
 		}
-<<<<<<< HEAD
 		if (data.path && data.duration) {
 			var p = - (TIME - MOMENT_APPEARANCE_TIME) / data.duration;
 			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
@@ -161,11 +160,9 @@ function Moment(data, index) {
 			
 			self.previousLookVec = LOOK_VEC;
 		}
-=======
-    if (data.placeContents == "random") {
-      self.placeImageInView()
-    }
->>>>>>> 04d7041a425ce6e84aac3d24c2da1cd2f733444f
+	    if (data.placeContents == "random") {
+	      self.placeImageInView()
+	    }
 		return self.done;
 	}
 
