@@ -8,19 +8,36 @@
 			"duration": 3
 		},
 		{
+			"sky": "scenes/newsletter/sky.jpg",
+			"contents": [
+				{"type": "image", "url": "scenes/newsletter/story2.png"},
+				{"type": "image", "url": "scenes/newsletter/story4.png"},
+				{"type": "image", "url": "scenes/newsletter/story1.png"},
+				{"type": "image", "url": "scenes/newsletter/story5.png"},
+				{"type": "image", "url": "scenes/newsletter/story3.png"}
+			],
+			"caption": ["Welcome to NEWS/ZONE", "#1 in VR news"],
+			"floatingOverlays": [
+				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 6},
+				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 7}
+			],
+			"gestures": {"headShake": "dismissOverlaysAndFinish"},
+			"duration": 20
+		},
+		{
 			"sky": "scenes/controls/sky.png",
-			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"]}],
+			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
 			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
 			"path": [500,0,0],
-			"duration": 14,
+			"duration": 18,
 			"turbulence": true
 		},
 		{
 			"sky": "scenes/gif-party/sky.jpg",
 			"contents": [
-				{"count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
-				{"count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"count": 18, "rows": 5, "url": "scenes/gif-party/girl-sprite.jpg", "framerate": 13, "type": "video", "columns": 4}
+				{"scale": 1.5, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
+				{"scale": 1.5, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
+				{"scale": 1.5, "count": 18, "rows": 5, "url": "scenes/gif-party/girl-sprite.jpg", "framerate": 13, "type": "video", "columns": 4}
 			],
 			"disabledContents": [
 				{"type": "text", "textLines": ["gif-party"]},
@@ -56,23 +73,6 @@
 				{"type": "image", "url": "scenes/popups/ad4.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 5, "closeButton": true},
 				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7, "closeButton": true}
 			],
-			"duration": 20
-		},
-		{
-			"sky": "scenes/newsletter/sky.jpg",
-			"contents": [
-				{"type": "image", "url": "scenes/newsletter/story2.png"},
-				{"type": "image", "url": "scenes/newsletter/story4.png"},
-				{"type": "image", "url": "scenes/newsletter/story1.png"},
-				{"type": "image", "url": "scenes/newsletter/story5.png"},
-				{"type": "image", "url": "scenes/newsletter/story3.png"}
-			],
-			"caption": ["Welcome to NEWS/ZONE", "#1 in VR news"],
-			"floatingOverlays": [
-				{"type": "image", "url": "scenes/newsletter/newsletter.png", "scale": 1.2, "appearanceDelay": 7},
-				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 8}
-			],
-			"gestures": {"headShake": "dismissOverlaysAndFinish"},
 			"duration": 20
 		},
 		{

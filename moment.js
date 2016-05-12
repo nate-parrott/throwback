@@ -18,6 +18,8 @@ function Moment(data, index) {
 	self.group = new THREE.Group();
 	self.contentGroup = new THREE.Group();
 	self.contentGroup.name = 'ContentGroup' + index;
+	self.contentCarousel = new THREE.Group();
+	self.contentGroup.add(self.contentCarousel);
 	self.group.add(self.contentGroup);
 	self.group.name = "Moment " + index;
 	self.index = index;
@@ -69,7 +71,7 @@ function Moment(data, index) {
 		var offset = -totalAngleDelta/2;
 		data.contents.forEach(function(item, i) {
 			var angle = i * angleDelta + offset;
-			var c = new Contents(item, self.contentGroup, {angle: angle, vertAngle: 0, random: false});
+			var c = new Contents(item, self.contentCarousel, {angle: angle, vertAngle: 0, random: false});
 			self.contents.push(c);
 		})
 	}
@@ -93,7 +95,7 @@ function Moment(data, index) {
 	}
 
 	if (data.caption) {
-		self.contents.push(new Contents({type: 'text', 'textLines': data.caption}, self.contentGroup,  {angle: 0, vertAngle: -35}));
+		self.contents.push(new Contents({type: 'text', 'textLines': data.caption}, self.contentCarousel,  {angle: 0, vertAngle: -35}));
 	}
 
 	self.show = function(scene) {
@@ -150,7 +152,6 @@ function Moment(data, index) {
 	// gesture actions:
 	self.dismissOverlaysAndFinish = function() {
 		self.overlays.forEach(function(o) {
-			console.log(o)
 			if (o.mesh) o.mesh.parent.remove(o.mesh);
 			if (o.plane) o.plane.parent.remove(o.plane)
 		})
@@ -172,7 +173,7 @@ function Moment(data, index) {
 
   self.placeImageInView = function() {
     // See if enough time has passed since last place
-    if (TIME - self.lastRandomPlaceTime <= 0.5 || self.numRandomPlacedGifs >= 20 || (TIME-MOMENT_APPEARANCE_TIME) < 3) {
+    if (TIME - self.lastRandomPlaceTime <= 0.5 || self.numRandomPlacedGifs >= 20) {
       return
     } else {
       self.lastRandomPlaceTime = TIME;
