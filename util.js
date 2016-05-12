@@ -72,3 +72,9 @@ function concatQuaternions(q1, q2) {
 	return q;
 }
 
+function getVectorDiffDirection(v1, v2) {
+	if (v1.equals(v2)) return 0;
+	var x = new THREE.Vector3();
+	x.crossVectors(v1, v2);
+	return x.y > 0 ? 1 : -1;
+}

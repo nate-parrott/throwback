@@ -138,13 +138,17 @@ function Moment(data, index) {
 		if (self.data.glitchyControls) {
 			if (!self.previousLookVec) {
 				self.previousLookVec = LOOK_VEC;
-				self.pointAt = new THREE.Vector3(0,0,-1);
 			}
-			var diff = quaternionBetweenVectors(self.previousLookVec, LOOK_VEC);
-			var reverseLook = quaternionBetweenVectors(LOOK_VEC, new THREE.Vector3(0,0,-1));
-			var q = concatQuaternions(reverseLook, diff);
 			
-			self.group.quaternion.copy(q);
+			var factor = 3 * getVectorDiffDirection(self.previousLookVec, LOOK_VEC);
+			var p1 = new THREE.Vector3();
+			p1.copy(self.previousLookVec);
+			var p2 = new THREE.Vector3();
+			p2.copy(LOOK_VEC);
+			p1.projectOnPlane(new THREE.Vector3(0,1,0));
+			p2.projectOnPlane(new THREE.Vector3(0,1,0));
+			var angle = p1.angleTo(p2);
+			self.group.rotateY(angle * factor);
 			
 			self.previousLookVec = LOOK_VEC;
 		}
