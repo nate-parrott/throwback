@@ -14,7 +14,7 @@ function Trip(scene, data, initialLookAngle) {
 		self.currentMomentIndex = i;
 		var moment = self.getMomentAtIndex(i);
 		if (moment.placeContents !== 'random') {
-			moment.contentGroup.rotateY(-self.lookAngle * Math.PI / 180);
+			moment.group.rotateY(-self.lookAngle * Math.PI / 180);
 		}
 		self.visibleMoments[i] = moment;
 		moment.show(self.scene);

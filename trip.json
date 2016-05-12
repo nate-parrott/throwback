@@ -1,8 +1,15 @@
 {
 	"moments": [
 		{
+			"sky": "sky/stars.jpg",
+			"contents": [
+				{"type": "text", "textLines": ["Junk VR 2020"]}
+			],
+			"duration": 3
+		},
+		{
 			"sky": "scenes/controls/sky.png",
-			"contents": [{"type": "text", "textLines": ["ENJOY THE WILD RIDE!"]}],
+			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"]}],
 			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
 			"path": [500,0,0],
 			"duration": 14,
