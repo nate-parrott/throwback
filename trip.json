@@ -1,6 +1,14 @@
 {
 	"moments": [
 		{
+			"sky": "scenes/controls/sky.png",
+			"contents": [{"type": "text", "textLines": ["ENJOY THE WILD RIDE!"]}],
+			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
+			"path": [500,0,0],
+			"duration": 14,
+			"turbulence": true
+		},
+		{
 			"sky": "scenes/gif-party/sky.jpg",
 			"contents": [
 				{"count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
@@ -42,13 +50,6 @@
 				{"type": "image", "url": "scenes/popups/ad2.png", "random": true, "translate": [0, 0, -50], "random": true, "closeButton": true, "steadilyAdvancing": true, "wobble": 1.5, "appearanceDelay": 7, "closeButton": true}
 			],
 			"duration": 20
-		},
-		{
-			"sky": "scenes/controls/sky.png",
-			"contents": [{"type": "text", "textLines": ["TRY TO LOOK AROUND"]}],
-			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
-			"path": [500,0,0],
-			"duration": 14
 		},
 		{
 			"sky": "scenes/newsletter/sky.jpg",

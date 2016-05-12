@@ -135,22 +135,11 @@ function Moment(data, index) {
 			var p = - (TIME - MOMENT_APPEARANCE_TIME) / data.duration;
 			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
 		}
-		if (self.data.glitchyControls) {
-			if (!self.previousLookVec) {
-				self.previousLookVec = LOOK_VEC;
-			}
-			
-			var factor = 3 * getVectorDiffDirection(self.previousLookVec, LOOK_VEC);
-			var p1 = new THREE.Vector3();
-			p1.copy(self.previousLookVec);
-			var p2 = new THREE.Vector3();
-			p2.copy(LOOK_VEC);
-			p1.projectOnPlane(new THREE.Vector3(0,1,0));
-			p2.projectOnPlane(new THREE.Vector3(0,1,0));
-			var angle = p1.angleTo(p2);
-			self.group.rotateY(angle * factor);
-			
-			self.previousLookVec = LOOK_VEC;
+		if (self.data.turbulence) {
+			var onset = Math.max(0, Math.min(1, (TIME - (MOMENT_APPEARANCE_TIME + 2)) / 8));
+			var rotateX = Math.sin(TIME * 4) * Math.PI * 2 * 0.1 * onset;
+			self.group.rotation.set(rotateX,0,0);
+			self.group.scale.set(1,1 + onset * (1 + Math.sin(TIME * 2)), 1);
 		}
 	    if (data.placeContents == "random") {
 	      self.placeImageInView()
