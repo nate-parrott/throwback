@@ -1,6 +1,14 @@
 {
 	"moments": [
 		{
+			"sky": "scenes/controls/sky.png",
+			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
+			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,-1,0]}],
+			"path": [500,0,0],
+			"duration": 18,
+			"turbulence": true
+		},
+		{
 			"flight": {"from": [19.0760, 72.8777], "to":  [41, -73.7]},
 			"duration": 24,
 			"sky": "sky/stars.jpg",
@@ -33,14 +41,6 @@
 			],
 			"gestures": {"headShake": "dismissOverlaysAndFinish"},
 			"duration": 20
-		},
-		{
-			"sky": "scenes/controls/sky.png",
-			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
-			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
-			"path": [500,0,0],
-			"duration": 18,
-			"turbulence": true
 		},
 		{
 			"sky": "scenes/gif-party/sky.jpg",
