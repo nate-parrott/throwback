@@ -3,9 +3,10 @@
 		{
 			"sky": "scenes/controls/sky.png",
 			"contents": [],
-			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone"}],
+			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,0,0]}],
 			"path": [500,0,0],
-			"duration": 14
+			"duration": 14,
+			"glitchyControls": true
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",

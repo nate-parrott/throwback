@@ -10,6 +10,18 @@ transition objects look like this:
 
 MOMENT_APPEARANCE_TIME = 0;
 
+function quaternionBetweenVectors(v1, v2) {
+	var q = new THREE.Quaternion();
+	q.setFromUnitVectors(v1, v2);
+	return q;
+}
+
+function concatQuaternions(q1, q2) {
+	var q = new THREE.Quaternion();
+	q.multiplyQuaternions(q1, q2);
+	return q;
+}
+
 function Moment(data, index) {
 	var self = this;
 	
@@ -132,6 +144,19 @@ function Moment(data, index) {
 		if (data.path && data.duration) {
 			var p = - (TIME - MOMENT_APPEARANCE_TIME) / data.duration;
 			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
+		}
+		if (self.data.glitchyControls) {
+			if (!self.previousLookVec) {
+				self.previousLookVec = LOOK_VEC;
+				self.pointAt = new THREE.Vector3(0,0,-1);
+			}
+			var diff = quaternionBetweenVectors(self.previousLookVec, LOOK_VEC);
+			var reverseLook = quaternionBetweenVectors(LOOK_VEC, new THREE.Vector3(0,0,-1));
+			var q = concatQuaternions(reverseLook, diff);
+			
+			self.group.quaternion.copy(q);
+			
+			self.previousLookVec = LOOK_VEC;
 		}
 		return self.done;
 	}
