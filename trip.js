@@ -26,7 +26,7 @@ function Trip(scene, data, initialLookAngle) {
 				prevMoment.hide();
 				delete self.visibleMoments[oldIndex];
 			}
-			self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 5});
+			self.currentTransition = new Transition(prevMoment, moment, completion, {type: 'fade', duration: 2});
 			self.currentTransition.tick(0);
 		}
 		self.ensurePreload();
@@ -81,7 +81,11 @@ function Trip(scene, data, initialLookAngle) {
 			if (self.visibleMoments[momentIndex]) {
 				var isDone = self.visibleMoments[momentIndex].tick(dt);
 				if (isDone && momentIndex == self.currentMomentIndex) {
-					self.showMomentAtIndex(self.currentMomentIndex+1 < self.momentsData.length ? self.currentMomentIndex+1 : 0);
+					if (self.currentMomentIndex + 1 < self.momentsData.length) {
+						self.showMomentAtIndex(self.currentMomentIndex + 1);
+					} else {
+						location.reload();
+					}
 				}
 			}
 		}

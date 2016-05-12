@@ -5,7 +5,9 @@
 			"contents": [{"type": "text", "textLines": ["CAN YOU SURVIVE THE RIDE?!?!!"], "translate": [-20, 0, 0]}],
 			"sceneContents": [{"type": "obj", "url": "scenes/controls/vrzone", "name": "vrzone", "translate": [40,-1,0]}],
 			"path": [500,0,0],
-			"duration": 18,
+			"pathTime": 18,
+			"breakdownAtTime": 20,
+			"duration": 30,
 			"turbulence": true
 		},
 		{
@@ -15,15 +17,8 @@
 			"contents": [],
 			"noContentFlyUp": true,
 			"comments": [
-				"twd22: FIRST", "n88: wow", "catzndogs: nice", "d0gpath: fuck", "frorzhz: so beautiful", "fririath: https://youtube.com/watch/w7En8=", "@nz88 you/ are despicable", "tapprst1: how is this video even real", "rr98: its spelled/ you're not your", "frix_mxx: FUCKKKKKK you", "chexk_mixxed: nice ;-)", "sienna_242435: these comments/ are so lame /check out my video/ instead http://tinyurl.com/389dj3r89"
+				"twd22: FIRST", "n88: wow", "catzndogs: nice", "d0gpath: fuck", "frorzhz: so beautiful", "fririath: https://youtube.com/watch/w7En8=", "ze3d: @nz88 you/ are despicable", "tapprst1: how is this video even real", "rr98: its spelled/ you're not your", "frix_mxx: FUCKKKKKK you", "chexk_mixxed: nice ;-)", "sienna_242435: these comments/ are so lame /check out my video/ instead http://tinyurl.com/389dj3r89"
 			]
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Junk VR 2020"]}
-			],
-			"duration": 3
 		},
 		{
 			"sky": "scenes/newsletter/sky.jpg",
@@ -86,31 +81,11 @@
 			"duration": 20
 		},
 		{
-			"sky": "sky/stars.jpg",
+			"sky": "scenes/cover/sky.jpg",
 			"contents": [
-				{"type": "text", "textLines": ["Junk VR 2020"]}
+				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1000]}
 			],
-			"duration": 3
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["Junk VR 2020"]}
-			]
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["overload"]}
-			],
-			"caption": ["TODO"]
-		},
-		{
-			"sky": "sky/stars.jpg",
-			"contents": [
-				{"type": "text", "textLines": ["world melting"]}
-			],
-			"caption": ["TODO"]
+			"duration": 7
 		}
 	]
 }

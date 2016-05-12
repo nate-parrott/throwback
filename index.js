@@ -168,7 +168,7 @@ function start(cardboard) {
 			trip.start();
 		}, 500);
 	})
-	$("#background-music").get(0).play();
+	// $("#background-music").get(0).play();
 }
 
 $("#start-cardboard").click(function() {

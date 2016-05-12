@@ -7,6 +7,7 @@ var Contents = function(data, node, positionInfo) {
 	if (data.random) positionInfo.random = data.random;
 	if (data.wobble) positionInfo.wobble = data.wobble;
 	if (data.steadilyAdvancing) positionInfo.steadilyAdvancing = data.steadilyAdvancing;
+	if (data.blink) positionInfo.blink = data.blink;
 	
 	if (data.type === 'image') {
 		addImageContents(self, node, data, function(node){
@@ -24,6 +25,10 @@ var Contents = function(data, node, positionInfo) {
 		addObjContents(self, node, data, function(node) {
 			positionContentObject(node, positionInfo);
 		});
+	} else if (data.type === 'randomSquare') {
+		addRandomSquare(self, node, data, function(node) {
+			positionContentObject(node, positionInfo);
+		})
 	}
 	self.tick = function(dt) {
 		if (self.animator) self.animator.update(1000 * dt);
@@ -34,7 +39,7 @@ var Contents = function(data, node, positionInfo) {
 			positionInfo.angle = -Math.atan2(look.z, look.x) / Math.PI * 180;
 			shouldReposition = true
 		}
-		if (positionInfo.nod || positionInfo.appearanceDelay || positionInfo.wobble || positionInfo.steadilyAdvancing) {
+		if (positionInfo.nod || positionInfo.appearanceDelay || positionInfo.wobble || positionInfo.steadilyAdvancing || positionInfo.blink) {
 			shouldReposition = true
 		}
 		if (shouldReposition) {
@@ -102,10 +107,16 @@ function positionContentObject(obj, positionInfo) {
 		objPos.z += positionInfo._commentOffset.z;
 		objPos.x += positionInfo._commentOffset.x;
 	}
-
+	
 	obj.matrix.identity();	
 	obj.position.copy(objPos);
+	
+	if (positionInfo.blink) {
+		obj.visible = Math.cos(TIME * positionInfo.blink) > 0;
+	}
+	
 	obj.lookAt(new THREE.Vector3(0,0,0));
+	
 	if (positionInfo.nod) {
 		var t = Math.sin(TIME * positionInfo.nod);
 		obj.rotateY(t * Math.PI * 2 * 0.1);
@@ -198,6 +209,17 @@ function addImageContents(self, node, data, callback) {
 			console.log('error loading ', url);
 		}
 	);
+}
+
+function addRandomSquare(self, node, data, callback) {
+	var size = 100;
+ 	var geometry = new THREE.PlaneGeometry( size, size);
+ 	var material = new THREE.MeshBasicMaterial( {color: Math.random() * 0xffffff, side: THREE.DoubleSide} );
+ 	var plane = new THREE.Mesh( geometry, material );
+ 	node.add( plane );
+	// console.log("adding image ", url, " to ", node);
+	self.plane = plane;
+	callback(plane);
 }
 
 function addObjContents(self, node, data, callback) {

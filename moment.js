@@ -133,9 +133,25 @@ function Moment(data, index) {
 			var altitude = 1.02 + Math.sqrt(1 - Math.pow(2*progress-1, 2)) / 4;
 			self.globe.position.copy(new THREE.Vector3(0, -radius * altitude, 0));
 		}
-		if (data.path && data.duration) {
-			var p = - (TIME - MOMENT_APPEARANCE_TIME) / data.duration;
+		if (data.path && data.pathTime) {
+			var p = (TIME - MOMENT_APPEARANCE_TIME) / data.pathTime;
+			p = Math.max(0, Math.min(1, p));
+			p = -p;
 			self.contentGroup.position.set(data.path[0] * p, data.path[1] * p, data.path[2] * p);
+		}
+		if (data.breakdownAtTime && TIME - MOMENT_APPEARANCE_TIME > data.breakdownAtTime && self.group.parent) {
+			if (!self._breakdownYet) {
+				self._breakdownYet = true;
+				function showRandomSquare() {
+					var blink = Math.random() > 0.7 ? 10 : null;
+					var nod = Math.random() > 0.7 ? 5 : null;
+					var wobble = Math.random() > 0.7 ? 3 : null
+					var c = new Contents({type: 'randomSquare', blink: blink, wobble: wobble, nod: nod}, self.group, {distance: 10, vertAngle: Math.random() * 360, angle: Math.random() * 30});
+					self.contents.push(c);
+					setTimeout(showRandomSquare, 500);
+				}
+				showRandomSquare();
+			}
 		}
 		if (self.data.turbulence) {
 			var onset = Math.max(0, Math.min(1, (TIME - (MOMENT_APPEARANCE_TIME + 2)) / 8));
