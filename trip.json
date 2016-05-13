@@ -59,14 +59,14 @@
 		{
 			"sky": "scenes/gif-party/sky.jpg",
 			"contents": [
-				{"scale": 1.5, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
-				{"scale": 1.5, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"type": "image", "url": "scenes/gif-party/ad6.jpg"},
-				{"type": "text", "textLines": ["welcome to", "GIFPARTY.com"]}
+				{"scale": 0.7, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
+				{"scale": 0.7, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
+				{"scale": 0.7, "type": "image", "url": "scenes/gif-party/ad6.jpg"},
+				{"scale": 0.7, "type": "text", "textLines": ["welcome to", "GIFPARTY.com"]}
 			],
 			"disabledContents": [
 				{"type": "text", "textLines": ["gif-party"]},
-				{"scale": 1.5, "count": 18, "rows": 5, "url": "scenes/gif-party/girl-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
+				{"scale": 0.7, "count": 18, "rows": 5, "url": "scenes/gif-party/girl-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
 				{"type": "image", "url": "scenes/gif-party/cat.jpg"},
 				{"count": 198, "rows": 15, "url": "scenes/gif-party/ballmer-sprite.jpg", "framerate": 13, "type": "video", "columns": 14},
 				{"count": 83, "rows": 10, "url": "scenes/gif-party/billnye-sprite.jpg", "framerate": 13, "type": "video", "columns": 9},
