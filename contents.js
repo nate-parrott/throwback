@@ -250,7 +250,8 @@ function addTextContents(self, node, data, callback) {
 								font: font,
 								size: size,
 								height: 0.01,
-								material: 0
+								material: 0,
+								curveSegments: 2
 							});
 			textGeo.computeBoundingBox();
 			var width = textGeo.boundingBox.max.x - textGeo.boundingBox.min.x;
