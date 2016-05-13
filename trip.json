@@ -1,11 +1,15 @@
 {
 	"moments": [
 		{
-			"sky": "scenes/cover/sky.jpg",
+			"sky": "scenes/cover/sky2.png",
 			"contents": [
-				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}
+				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6},
+				{"type": "image", "url": "scenes/cover/cover.png"},
+				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6}
 			],
-			"duration": 7
+			"disabled": [{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}],
+			"duration": 7,
+			"contentAngleSpread": 42
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",
