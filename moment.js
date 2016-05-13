@@ -63,7 +63,7 @@ function Moment(data, index) {
 	}
 
 	self.contents = [];
-	if (data.contents && data.placeContents != "random") {
+	if (data.contents && data.placeContents !== "random") {
 		var angleDelta = -(data.contentAngleSpread || 29);
 		var totalAngleDelta = angleDelta * (data.contents.length - 1);
 		var offset = -totalAngleDelta/2;
@@ -176,7 +176,7 @@ function Moment(data, index) {
 	}
 
 	self.rayCastHits = function(hits) {
-		if (TIME - MOMENT_APPEARANCE_TIME > 1) {
+		if (self.elapsed > 1) {
 			hits.forEach(function(hit) {
 				var obj = hit.object;
 				if (obj.isCloseButton) {
