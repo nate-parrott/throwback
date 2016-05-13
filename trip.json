@@ -1,11 +1,15 @@
 {
 	"moments": [
 		{
-			"sky": "scenes/cover/sky.jpg",
+			"sky": "scenes/cover/sky2.png",
 			"contents": [
-				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}
+				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6},
+				{"type": "image", "url": "scenes/cover/cover.png"},
+				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6}
 			],
-			"duration": 7
+			"disabled": [{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}],
+			"duration": 7,
+			"contentAngleSpread": 42
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",
@@ -78,7 +82,7 @@
 				{"count": 76, "rows": 9, "url": "scenes/gif-party/zuck-sprite.jpg", "framerate": 13, "type": "video", "columns": 9}
 			],
 			"placeContents": "random",
-			"duration": 10
+			"duration": 8
 		},
 		{
 			"sky": "scenes/controls/sky.png",
