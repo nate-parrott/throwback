@@ -5,8 +5,7 @@
 			"contents": [
 				{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}
 			],
-			"duration": 2,
-			"duration_": 7
+			"duration": 7
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",
