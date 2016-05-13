@@ -22,7 +22,7 @@ function isMobile() {
 	return mobile;
 }
 
- //Beginning of init
+ // Beginning of init
 
 function init(cardboard) {
 	renderer = new THREE.WebGLRenderer({antialias: true});
@@ -71,7 +71,7 @@ function init(cardboard) {
 	}
 	window.addEventListener('deviceorientation', setOrientationControls, true);
 
-	//Control Lighting
+	// Control Lighting
 	var ambient = new THREE.AmbientLight(0xf2f2f2);
 	scene.add(ambient);
 
@@ -168,7 +168,7 @@ function start(cardboard) {
 			trip.start();
 		}, 500);
 	})
-	// $("#background-music").get(0).play();
+	$("#background-music").get(0).play();
 }
 
 $("#start-cardboard").click(function() {
