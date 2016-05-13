@@ -197,24 +197,27 @@ function Moment(data, index) {
 
   self.placeImageInView = function() {
     // See if enough time has passed since last place
-    if (TIME - self.lastRandomPlaceTime <= 0.5 || self.numRandomPlacedGifs >= 20) {
+    if (TIME - self.lastRandomPlaceTime <= 0.25 || TIME - MOMENT_APPEARANCE_TIME < 1) {
       return
-    } else {
-      self.lastRandomPlaceTime = TIME;
-      self.numRandomPlacedGifs += 1;
     }
+     self.lastRandomPlaceTime = TIME;
 
     // Detect where user is looking
     var look = LOOK_VEC;
     var pos = look.multiplyScalar(Math.floor(Math.random() * 200.0 + 50.0))
-    console.log(pos, pos.length())
-
-    // Create Content object
-    var contentMedia = data.contents.filter(function(v) { return v.type == "image" || v.type == "video"; });
-    var randomMedia = contentMedia[Math.floor(Math.random() * contentMedia.length)];
-    randomMedia.steadilyAdvancing = true;
-    var c = new Contents(randomMedia, self.contentGroup, {position: pos});
-
+	
+	var c;
+	if (self.contents.length >= 15) {
+		c = self.contents[0];
+		self.contents.splice(0,1);
+		c.positionInfo.position = pos;
+	} else {
+	    // Create Content object
+	    var contentMedia = data.contents.filter(function(v) { return v.type == "image" || v.type == "video"; });
+	    var randomMedia = contentMedia[Math.floor(Math.random() * contentMedia.length)];
+	    randomMedia.steadilyAdvancing = true;
+	    c = new Contents(randomMedia, self.contentGroup, {position: pos});
+	}
     self.contents.push(c);
   }
 

@@ -1,5 +1,6 @@
 var Contents = function(data, node, positionInfo) {
 	var self = this;
+	self.positionInfo = positionInfo;
 	if (data.scale) positionInfo.scale = data.scale;
 	if (data.translate) positionInfo.translate = data.translate;
 	if (data.nod) positionInfo.nod = data.nod;
