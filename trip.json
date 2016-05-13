@@ -53,32 +53,27 @@
 			"duration": 20
 		},
 		{
-			"sky": "scenes/gif-party/sky.jpg",
+			"sky": "scenes/messenger-party/sky.jpg",
 			"contents": [
 				{"scale": 1.5, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
 				{"scale": 1.5, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"type": "image", "url": "scenes/gif-party/ad6.jpg"},
-				{"type": "text", "textLines": ["welcome to", "GIFPARTY.com"]}
-			],
-			"disabledContents": [
-				{"type": "text", "textLines": ["gif-party"]},
-				{"scale": 1.5, "count": 18, "rows": 5, "url": "scenes/gif-party/girl-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"type": "image", "url": "scenes/gif-party/cat.jpg"},
-				{"count": 198, "rows": 15, "url": "scenes/gif-party/ballmer-sprite.jpg", "framerate": 13, "type": "video", "columns": 14},
-				{"count": 83, "rows": 10, "url": "scenes/gif-party/billnye-sprite.jpg", "framerate": 13, "type": "video", "columns": 9},
-				{"count": 29, "rows": 6, "url": "scenes/gif-party/brainmachine-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
-				{"count": 81, "rows": 9, "url": "scenes/gif-party/cakes-sprite.jpg", "framerate": 13, "type": "video", "columns": 9},
-				{"count": 13, "rows": 4, "url": "scenes/gif-party/evil-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"count": 40, "rows": 7, "url": "scenes/gif-party/homer-sprite.jpg", "framerate": 13, "type": "video", "columns": 6},
-				{"count": 126, "rows": 12, "url": "scenes/gif-party/instagram-sprite.jpg", "framerate": 13, "type": "video", "columns": 11},
-				{"count": 18, "rows": 5, "url": "scenes/gif-party/old-vr-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"count": 52, "rows": 8, "url": "scenes/gif-party/ulloa-sprite.jpg", "framerate": 13, "type": "video", "columns": 7},
-				{"count": 20, "rows": 5, "url": "scenes/gif-party/vr-grandma-ii-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"count": 32, "rows": 6, "url": "scenes/gif-party/vr-grandma-sprite.jpg", "framerate": 13, "type": "video", "columns": 6},
-				{"count": 76, "rows": 9, "url": "scenes/gif-party/zuck-sprite.jpg", "framerate": 13, "type": "video", "columns": 9}
+				{"type": "image", "scale": 3.0, "url": "scenes/gif-party/ad6.jpg"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/1.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/2.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/3.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/4.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/5.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/6.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/7.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/8.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/9.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/10.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/11.png"},
+				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/12.png"},
+				{"type": "text", "textLines": ["Welcome to", "Messenger"]}
 			],
 			"placeContents": "random",
-			"duration": 10
+			"duration": 20
 		},
 		{
 			"sky": "scenes/controls/sky.png",

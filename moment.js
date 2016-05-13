@@ -73,14 +73,14 @@ function Moment(data, index) {
 			self.contents.push(c);
 		})
 	}
-	
+
 	if (data.sceneContents) {
 		data.sceneContents.forEach(function(d) {
 			var c = new Contents(d, self.contentGroup, {position: new THREE.Vector3(0,0,0), translate: [0,-1,0]});
 			self.contents.push(c);
 		})
 	}
-	
+
 	self.overlays = [];
 	if (data.floatingOverlays) {
 		var dist = 85 - 10;
@@ -185,7 +185,7 @@ function Moment(data, index) {
 			})
 		}
 	}
-	
+
 	// comments:
 	if (data.comments) {
 		data.comments.forEach(function(comment) {
@@ -205,9 +205,9 @@ function Moment(data, index) {
     // Detect where user is looking
     var look = LOOK_VEC;
     var pos = look.multiplyScalar(Math.floor(Math.random() * 200.0 + 50.0))
-	
+
 	var c;
-	if (self.contents.length >= 15) {
+	if (self.contents.length > 25) {
 		c = self.contents[0];
 		self.contents.splice(0,1);
 		c.positionInfo.position = pos;
