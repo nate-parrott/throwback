@@ -4,12 +4,34 @@
 			"sky": "scenes/cover/sky2.png",
 			"contents": [
 				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6},
-				{"type": "image", "url": "scenes/cover/cover.png"},
+				{"type": "image", "url": "scenes/cover/awards.png"},
 				{"type": "image", "url": "scenes/cover/goggles.png", "wobble": 6}
 			],
 			"disabled": [{"type": "obj", "url": "scenes/cover/fuckvr", "name": "fuckvr", "blink": 7, "translate": [0,0,-1200]}],
 			"duration": 7,
 			"contentAngleSpread": 42
+		},
+		{
+			"sky": "scenes/cover/sky2.png",
+			"contents": [
+				{"scale": 0.7, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
+				{"scale": 0.7, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/1.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/2.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/3.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/4.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/5.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/6.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/7.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/8.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/9.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/10.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/11.png"},
+				{"scale": 0.7, "type": "image", "url": "scenes/messenger-party/12.png"},
+				{"type": "text", "textLines": ["Welcome to", "Messenger"]}
+			],
+			"placeContents": "random",
+			"duration": 20
 		},
 		{
 			"sky": "scenes/popups/sky2.jpg",
@@ -57,29 +79,6 @@
 				{"type": "obj", "url": "scenes/newsletter/head2", "name": "head2", "scale": 20, "translate": [0,-5,0], "nod": 5, "appearanceDelay": 6.3}
 			],
 			"gestures": {"headShake": "dismissOverlaysAndFinish"},
-			"duration": 20
-		},
-		{
-			"sky": "scenes/messenger-party/sky.jpg",
-			"contents": [
-				{"scale": 1.5, "count": 23, "rows": 5, "url": "scenes/gif-party/cat-sprite.jpg", "framerate": 13, "type": "video", "columns": 5},
-				{"scale": 1.5, "count": 13, "rows": 4, "url": "scenes/gif-party/zuck-fire-sprite.jpg", "framerate": 13, "type": "video", "columns": 4},
-				{"type": "image", "scale": 3.0, "url": "scenes/gif-party/ad6.jpg"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/1.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/2.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/3.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/4.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/5.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/6.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/7.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/8.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/9.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/10.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/11.png"},
-				{"type": "image", "scale": 3.0, "url": "scenes/messenger-party/12.png"},
-				{"type": "text", "textLines": ["Welcome to", "Messenger"]}
-			],
-			"placeContents": "random",
 			"duration": 20
 		},
 		{
